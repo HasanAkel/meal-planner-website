@@ -24,3 +24,42 @@ a{
     text-decoration: none;
     color: inherit; 
 }
+#call-to-action{
+    height: 70vh;
+    padding: 5vw;
+    background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.1)), url("food-image-background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: white;
+}
+.cta-text{
+  display: block;
+  margin-top: 2vh;  
+  font-size:4rem;
+}
+.cta-description{
+    font-size: 1.5rem;
+    margin-bottom: 2vh;
+    display: flex;
+}
+.btn {
+  display: flex;
+  width: fit-content;
+  background-color: #22c55e;
+  color: #fff;
+  padding: 0.75em 2em;
+  border: none;
+  border-radius: 2em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15);
+  transition: background 0.2s, transform 0.2s;
+  margin-top:4rem;
+}
+.btn:hover {
+  background-color: #16a34a;
+  transform: translateY(-2px) scale(1.03);
+}
