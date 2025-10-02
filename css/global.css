@@ -17,7 +17,7 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 1rem;
+  padding: 0.5rem 0.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
@@ -41,11 +41,29 @@ nav {
     font-weight: 700; 
 }
 
-#logo{
-  font-size: clamp(1.25rem, 2.5vw, 1.8rem);
-  font-weight: 800;
-  letter-spacing: 0.3px;
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;             
+  font-size: 1.3rem;       
+  font-weight: 800;        
+  color: #064e3b;        
 }
+
+#logo img {
+  height: 70px;  
+  width: auto;
+}
+
+#logo span {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #064e3b;
+}
+
+
 
 /* stlying primary button that will be used across pages */
 .btn {
