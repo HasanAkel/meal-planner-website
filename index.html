@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meal Planner</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
     <a href = "index.html" id="logo">Meal Planner</a>
     <nav>
-      <a href="index.html" class="nav-element">Home</a>
+      <a href="index.html" class="nav-element active">Home</a>
       <a href="recipes.html" class="nav-element">Recipes</a>
       <a href="planner.html" class="nav-element">Planner</a>
       <a href="tracker.html" class="nav-element">Tracker</a>
@@ -21,11 +21,22 @@
     <div id="call-to-action">
       <div id="left-side">
       <h2><span class="cta-text">Plan your meals.</span> <span class="cta-text">Track your calories.</span> <span class="cta-text">Eat smarter.</span></h2>
-      <p class="cta-description">Finally, a meal plan built just for you + not the internet.</p>
-      <a href="-----" class="btn">Start Planning</a>
+      <p class="cta-description">Finally, a meal plan built for YOU!</p>
+      <a href="planner.html" class="btn">Start Planning</a>
       </div>
-      <div id="right-side"></div>
-      <div>
+      <div id="right-side" aria-hidden="true">
+        <div class="mini-card">
+          <h3>Why Meal Planner?</h3>
+          <ul>
+              <li>✔ Save your favorite recipes</li>
+              <li>✔ Build weekly meal plans</li>
+              <li>✔ Track calories & ingredients</li>
+              <li>✔ Review past months</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
   </main>
 
   <script src="js/main.js"></script>

@@ -2,64 +2,108 @@
 font-family:Arial, Helvetica, sans-serif;    
 }
 header{
-    background-color: #AAFFCC;
-    display: flex;
+  background-color: #a7f3d0;
+  color: #064e3b;
+  display: flex;
   justify-content: space-between;
-  padding: 1vw;
+  align-items: center;       
+  padding: 0.8rem 1rem;
 }
+
 nav{
     display: flex;
     justify-content: right;
 }
 .nav-element{
-    margin: auto 0.5vw;
+  padding: 0.5rem 0.8rem;       
+  border-radius: 0.5rem;       
+  transition: background 0.15s ease, transform 0.15s ease;
 }
+.nav-element:hover{
+  background: rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+.nav-element.active{
+  background: rgba(6,78,59,0.1);
+  font-weight: 700;
+}
+
 #logo{
-    display: flex;
-    justify-content: left;
-    margin: 10px;
-    font-size: 3vw;
+  font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: 0.3px;
 }
+
 a{
     text-decoration: none;
     color: inherit; 
 }
 #call-to-action{
-    height: 70vh;
-    padding: 5vw;
-    background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.1)), url("food-image-background.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    color: white;
+  min-height: 70vh;                      
+  padding: clamp(1.25rem, 4vw, 3rem);   
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0,0,0,0.15)),
+    url("../imgs/food-image-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: grid;
+  place-items: center;
 }
+
 .cta-text{
   display: block;
-  margin-top: 2vh;  
-  font-size:4rem;
+  margin-top: clamp(0.4rem, 1.2vh, 0.8rem);
+  font-size: clamp(1.8rem, 5.3vw, 3.25rem);
+  font-weight: 800;
 }
+
 .cta-description{
-    font-size: 1.5rem;
-    margin-bottom: 2vh;
-    display: flex;
+  font-size: clamp(1rem, 2.3vw, 1.2rem);
+  color: #cbd5e1;
+  margin: 0.75rem 0 1.5rem 0;
 }
+
 .btn {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: fit-content;
-  background-color: #22c55e;
+  background-color: #34d399;
   color: #fff;
-  padding: 0.75em 2em;
-  border: none;
-  border-radius: 2em;
-  font-size: 1.2rem;
+  padding: 0.8em 1.6em;
+  border: 2px solid #059669;    
+  border-radius: 999px;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15);
-  transition: background 0.2s, transform 0.2s;
-  margin-top:4rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  margin-top: 1.5rem;
 }
+
 .btn:hover {
-  background-color: #16a34a;
-  transform: translateY(-2px) scale(1.03);
+  background-color: #059669;  
+  border-color: #047857;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
 }
+
+
+
+#right-side{
+  display: flex;
+  justify-content: center;
+}
+.mini-card{
+  backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  width: min(360px, 90%);
+  color: #fff;
+}
+.mini-card h3{ margin: 0 0 0.6rem 0; font-size: 1.1rem; }
+.mini-card ul{ margin: 0; padding-left: 1rem; font-size: 1rem; }
