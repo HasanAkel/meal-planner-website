@@ -1,0 +1,77 @@
+/* styling home page */
+#call-to-action {
+  min-height: 70vh;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0,0,0,0.15)),
+    url("../imgs/food-image-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+
+.cta-text {
+  display: block;
+  margin-top: clamp(0.4rem, 1.2vh, 0.8rem);
+  font-size: clamp(1.8rem, 5.3vw, 3.25rem);
+  font-weight: 800;
+}
+
+.cta-description {
+  font-size: clamp(1rem, 2.3vw, 1.2rem);
+  color: #cbd5e1;
+  margin: 0.75rem 0 1.5rem 0;
+}
+
+/* glass card styling */
+#right-side { 
+    display: flex; 
+    justify-content: center; 
+}
+
+.mini-card {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  width: min(360px, 90%);
+  color: #fff;
+}
+
+.mini-card h3 { 
+    margin: 0 0 0.6rem 0; 
+    font-size: 1.1rem; 
+}
+
+.mini-card ul { 
+    margin: 0; 
+    padding-left: 1rem; 
+    font-size: 1rem; 
+}
+
+
+/* adjustments for home page on smaller screens */
+@media (max-width: 768px) {
+  #call-to-action {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  #left-side {
+    margin-bottom: 1rem;
+  }
+
+  .cta-text {
+    font-size: 2rem;
+  }
+
+  .mini-card {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
