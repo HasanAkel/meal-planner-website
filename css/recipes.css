@@ -1,49 +1,46 @@
 /* styling rexipes page */
 
-.page-wrap{ /* used to make space between edges of page and content  */
+.page-spacing{ /* used to make space between edges of page and content  */
   max-width: 900px;
-  margin: 1.25rem auto 2rem;
-  padding: 0 1rem;
+  margin: 1.25rem auto;
+
 }
 
 /* styling main text of page */
-.recipes-hero{
+.recipes-title{
   background: linear-gradient(180deg, #ffffff, #fbfdff);
-  border: 1px solid #eaeef5;
   border-radius: 14px;
-  padding: 1rem 1rem 1.1rem;
-  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
-  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04); /* https://www.w3schools.com/cssref/css3_pr_box-shadow.php */
 }
 
-.recipes-hero h1 {
+.recipes-title h1 {
   margin: 0.25rem 0;
   font-size: clamp(1.5rem, 3.5vw, 2rem); /* clamp is used to make the pages compatible with other screen sizes */
-  color: #0b1320;
+  /* https://www.w3schools.com/cssref/func_clamp.php */
+  
+  color: #34d399;
 }
-.recipes-hero .subtle{
+.recipes-sub{
   margin: 0;
-  color: #475569;
-  font-size: 0.98rem;
+  color: #123723;
 }
 
 /* styling the controls */
 .recipes-controls{
-  margin: 1rem 0 0.75rem;
+  margin: 1rem 0;
   padding-bottom: 0.75rem;
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #eaeef5;
+  display: flex; /*makes the search recipes box long*/
+  gap: 0.5rem; /*makes gap between button and search box*/
+  border-bottom: 1px solid #eaeef5; /*adds small seperator between sections */
 }
 
 #recipe-search{
-  flex: 1 1 340px;
+  flex: 1rem;
   padding: 0.7rem 0.9rem;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   font-size: 1rem;
-  outline: none;
 }
 
 #recipe-search:focus { 
@@ -55,10 +52,10 @@
 .btn-secondary {
   background: #6d7178;
   color: #fff;
-  padding: 0.8em 1.6em;
+  padding: 1em 1.5em;
   border: 2px solid #363d45;
   border-radius: 999px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
 }
@@ -94,14 +91,7 @@
 
 
 /* Add-recipe form card */
-.card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
-  margin-top: 1rem;
-}
+
 
 .form-row {
   display: grid;
@@ -118,7 +108,7 @@
   padding: 0.65rem 0.8rem;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
-  font-size: 0.98rem;
+  font-size: 1rem;
   outline: none;
 }
 
@@ -157,9 +147,7 @@
   margin-top: 1.25rem;
   padding: 1rem;
   border-radius: 14px;
-  background-image:
-    linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15)),
-    url("../imgs/food-image-background.png"); /* reuse site background */
+  background-image:linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15)),url("../imgs/recipes_background_recipe.jpg"); /* reuse site background */
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -173,9 +161,20 @@
 
 .samples-grid { /* responsive grid for sample cards */
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* https://www.w3schools.com/css/css_grid.asp */
   gap: 0.8rem;
 }
+
+/* recipe sample images */
+.recipe-img {
+  width: 90%;
+  height: 180px;
+  object-fit: cover; /* when you resize screen, image resizes accordingly */
+  border-radius: 50px;
+  margin: 0.5rem 0;
+}
+
+
 
 @media (max-width: 900px) {
   .samples-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
