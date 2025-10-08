@@ -2,10 +2,7 @@
 #call-to-action {
   min-height: 70vh;
   padding: clamp(1.25rem, 4vw, 3rem);
-  background-image:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0,0,0,0.15)),
-    url("../imgs/food-image-background.png");
-  background-repeat: no-repeat;
+  background-image:linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0,0,0,0.15)),url("../imgs/food-image-background.png");
   background-size: cover;
   background-position: center;
   color: white;
@@ -15,7 +12,7 @@
 
 .cta-text {
   display: block;
-  margin-top: clamp(0.15rem, 0.5vh, 0.3rem);
+  margin-top: clamp(0.4rem, 1.2vh, 0.8rem);
   font-size: clamp(1.8rem, 5.3vw, 3.25rem);
   font-weight: 800;
 }
@@ -24,41 +21,6 @@
   font-size: clamp(1rem, 2.3vw, 1.2rem);
   color: #cbd5e1;
   margin: 0.75rem 0 1.5rem 0;
-}
-
-/* glass card styling */
-#right-side { 
-    display: flex; 
-    justify-content: center; 
-}
-
-.mini-card {
-  width: min(360px, 90%);
-  color: #fff;
-}
-
-.mini-card h3 { 
-    margin: 0 0 0.6rem 0; 
-    font-size: 1.1rem; 
-}
-
-.mini-card ul { 
-    margin: 0; 
-    padding-left: 1rem; 
-    font-size: 1rem; 
-}
-
-.cta-cards {
-  margin-top: 1.25rem;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;            
-  align-items: stretch;
-}
-
-.cta-cards .mini-card {
-  flex: 1 1 260px;
-  max-width: 360px;
 }
 
 
@@ -80,14 +42,7 @@
 
   .mini-card {
     width: 100%;
-    margin-top: 1rem;
   }
 
-  .cta-cards {
-    justify-content: center;  
-  }
-  .cta-cards .mini-card {
-    width: 100%;
-    max-width: 100%;
-  }
+
 }

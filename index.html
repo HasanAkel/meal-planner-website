@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="imgs/myfavicon.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet"> <!--font embedding-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!--using bootstrap-->
   <title>Meal Planner</title>
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/index.css">
@@ -30,61 +30,65 @@
       <div id="left-side">
         <h2><span class="cta-text">Plan your meals.</span> <span class="cta-text">Track your calories.</span> <span class="cta-text">Eat smarter.</span></h2>
         <p class="cta-description">Finally, a meal plan built for YOU!</p>
-        <a href="registration.html" class="btn">Start Planning Your Meals Now!</a>
+        <a href="planner.html" class="btn">Start Planning Your Meals Now!</a>
       </div>
 
-      <!-- Glass cards under the button -->
-    <div class="cta-cards">
-        <div class="glass-card mini-card">
-          <h3>Why Meal Planner?</h3>
-          <ul>
-            <li>Save your favorite recipes</li>
-            <li>Build weekly meal plans</li>
-            <li>Track calories & ingredients</li>
-            <li>Review past months</li>
-          </ul>
+      <!-- Glass cards under the button, used bootstrap grid system -->
+    <div class="container mt-4">
+      <div class="row justify-content-center g-4">
+    
+        <div class="col-12 col-md-6 col-lg-5">
+          <div class="glass-card mini-card h-100">
+            <h3>Why Meal Planner?</h3>
+            <ul>
+              <li>Save your favorite recipes</li>
+              <li>Build weekly meal plans</li>
+              <li>Track calories & ingredients</li>
+              <li>Review past months</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="glass-card mini-card">
-          <h3>Quick Start</h3>
+        <div class="col-12 col-md-6 col-lg-5">
+          <div class="glass-card mini-card h-100">
+          <h3>Smart Recipes</h3>
           <ul>
-            <li>Add 3 go-to recipes</li>
-            <li>Plan your meals day by day</li>
-            <li>Check calories/ingredients</li>
-            <li>Save your weekly plan</li>
+            <li>Search healthy recipes</li>
+            <li>View calories instantly</li>
+            <li>Save custom meals</li>
+            <li>Organize by category</li>
           </ul>
+          </div>
         </div>
 
-      <div class="glass-card mini-card">
-        <h3>Stay on Track</h3>
-        <ul>
-          <li>Reuse last week's plan</li>
-          <li>Swap meals in seconds</li>
-          <li>Shop by ingredients</li>
-          <li>See monthly trends</li>
-        </ul>
+        <div class="col-12 col-md-6 col-lg-5">
+          <div class="glass-card mini-card h-100">
+            <h3>Personalized Plans</h3>
+            <ul>
+              <li>Auto-generate weekly menus</li>
+              <li>Adjust serving sizes</li>
+              <li>Balance macros</li>
+              <li>Sync with your diet goals</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-5">
+          <div class="glass-card mini-card h-100">
+          <h3>Stay on Track</h3>
+          <ul>
+            <li>Reuse past plans</li>
+            <li>Swap meals easily</li>
+            <li>Generate shopping lists</li>
+            <li>Track progress monthly</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="glass-card mini-card">
-        <h3>Healthy Habits</h3>
-        <ul>
-          <li>Eat balanced, colorful meals</li>
-          <li>Stay hydrated throughout the day</li>
-          <li>Prep ingredients ahead of time</li>
-          <li>Celebrate small wins weekly</li>
-        </ul>
-      </div>
-      <div class="glass-card mini-card">
-        <h3>Why Us</h3>
-        <ul>
-          <li>Tailored just for you.</li>
-          <li>Expert AI assistant</li>
-          <li>Easy to use</li>
-          <li>All in one</li>
-        </ul>
-      </div>
- 
+      
     </div>
+  </div>
+
 
 
   </div>
@@ -93,3 +97,4 @@
   <script src="js/main.js"></script>
 </body>
 </html>
+
