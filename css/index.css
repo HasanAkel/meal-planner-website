@@ -33,12 +33,6 @@
 }
 
 .mini-card {
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 14px;
-  padding: 1rem 1.1rem;
   width: min(360px, 90%);
   color: #fff;
 }
@@ -53,6 +47,20 @@
     padding-left: 1rem; 
     font-size: 1rem; 
 }
+
+.cta-cards {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;            
+  align-items: stretch;
+}
+
+.cta-cards .mini-card {
+  flex: 1 1 260px;
+  max-width: 360px;
+}
+
 
 
 /* adjustments for home page on smaller screens */
@@ -73,5 +81,13 @@
   .mini-card {
     width: 100%;
     margin-top: 1rem;
+  }
+
+  .cta-cards {
+    justify-content: center;  
+  }
+  .cta-cards .mini-card {
+    width: 100%;
+    max-width: 100%;
   }
 }

@@ -149,3 +149,39 @@
     padding: 1rem;
   }
 }
+
+
+
+/* --- example recipes section (glassy cards at bottom) --- */
+.recipes-samples { /* section background to help the glass effect show */
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background-image:
+    linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15)),
+    url("../imgs/food-image-background.png"); /* reuse site background */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.samples-title {
+  margin: 0 0 0.75rem 0;
+  font-size: clamp(1.2rem, 3vw, 1.4rem);
+  font-weight: 800;
+}
+
+.samples-grid { /* responsive grid for sample cards */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .samples-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 580px) {
+  .samples-grid { grid-template-columns: 1fr; }
+}
+
+

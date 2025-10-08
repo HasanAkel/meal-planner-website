@@ -91,6 +91,45 @@ nav {
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
 }
 
+/* --- shared glassy card style (used across pages) --- */
+.glass-card {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.glass-card h3 {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.1rem;
+}
+
+.glass-card p, .glass-card ul {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.mini-card {
+  width: min(360px, 90%);
+  margin-top: 1rem;
+}
+
+.mini-card ul {
+  list-style: none; /*removes the bullet points of the ul*/
+}
+.mini-card ul li {
+  margin-bottom: 0.4rem; /* adds small spacing between each line */
+}
+
+
+
+
 
 /* adjustments for smaller screens */
 @media (max-width: 768px) {
