@@ -75,7 +75,7 @@ nav {
   color: #fff;
   padding: 0.8em 1.6em;
   border: 2px solid #059669;
-  border-radius: 999px;
+  border-radius: 999px; /* pill shaped */
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;

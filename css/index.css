@@ -1,13 +1,13 @@
 /* styling home page */
 #call-to-action {
   min-height: 70vh;
-  padding: clamp(1.25rem, 4vw, 3rem);
+  padding: 1.25rem;
   background-image:linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0,0,0,0.15)),url("../imgs/food-image-background.png");
   background-size: cover;
   background-position: center;
   color: white;
-  display: grid;
   place-items: center;
+  text-align: center;
 }
 
 .cta-text {
@@ -21,6 +21,10 @@
   font-size: clamp(1rem, 2.3vw, 1.2rem);
   color: #cbd5e1;
   margin: 0.75rem 0 1.5rem 0;
+}
+
+.btn {
+  margin-top: 4rem
 }
 
 
