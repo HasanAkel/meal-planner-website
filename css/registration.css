@@ -1,0 +1,15 @@
+.ai-registration-container{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    width: 60vw;
+    height: 70vh;
+    margin: auto;
+    border: black 2px solid;
+    border-radius: 15px;
+}

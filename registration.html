@@ -1,3 +1,13 @@
+<!--The idea is, rather than "signing up" and providing info one by one we make it interactiveby adding an llm
+that you speak to that asks you the questions that we need to get the information we need, such as:
+whats your name
+how old are you
+what are your goals
+how much do you weigh
+whats your height
+etc
+-->
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +17,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet"> <!--font embedding-->
         <title>Recipes</title>
         <link rel="stylesheet" href="css/global.css">
+        <link rel="stylesheet" href="css/registration.css">
     </head>
 
     <body>
@@ -23,5 +34,12 @@
         </nav>
         </header>
 
+
+        <main>
+            <div class="ai-registration-container">
+                <h2>Welcome to PrepPal!</h2>
+                <p>Let's get started by setting up your personalized meal plan. Our AI assistant will guide you through a few questions to tailor the experience just for you.</p>
+                <button id="start-ai-btn" class="btn">Start AI Setup</button>
+        </main>
     </body>
 </html>

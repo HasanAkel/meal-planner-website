@@ -15,7 +15,7 @@
 
 .cta-text {
   display: block;
-  margin-top: clamp(0.4rem, 1.2vh, 0.8rem);
+  margin-top: clamp(0.15rem, 0.5vh, 0.3rem);
   font-size: clamp(1.8rem, 5.3vw, 3.25rem);
   font-weight: 800;
 }
