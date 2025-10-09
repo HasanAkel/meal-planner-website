@@ -9,6 +9,7 @@ a {
 html, body { 
   background: #f5f7fb; 
   margin: 0;
+  padding: 0;
 }
 
 .hidden{
