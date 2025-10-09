@@ -30,14 +30,14 @@
                 <p class="recipes-sub">Search, add, and browse your saved meals.</p>
             </section>
 
-
+            <div id="recipes-controls">
             <section class="recipes-controls">
                 <input id="recipe-search" type="search" placeholder="Search recipes"/>
-                <button class="btn-secondary" type="button">+ Add Recipe</button>
+                <button class="btn-secondary" type="button" id="add-recipe-btn">+ Add Recipe</button>
             </section> <!--need to add js here to make the form only appear after add recipe is clicked-->
-
+</div>
             <!--form for adding recipes-->
-            <form id="add-recipe-form" class="card" autocomplete="off">
+            <form id="add-recipe-form" class="card hidden" autocomplete="off">
                 <div class="form-row">
                     <label for="recipe-name">Name</label>
                     <input id="recipe-name" name="name" type="text" placeholder="e.g., Grilled Chicken"/>
@@ -60,7 +60,7 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn">Save Recipe</button>
-                    <button type="reset" class="btn-ghost">Cancel</button>
+                    <button type="reset" class="btn-ghost" id="cancel-btn">Cancel</button>
                 </div>
             </form>
 
@@ -90,6 +90,6 @@
         </section>
 
         </main>
-
+        <script src="js/recipes.js"></script>
     </body>
 </html>

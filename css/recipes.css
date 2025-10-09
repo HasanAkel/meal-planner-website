@@ -5,7 +5,9 @@
   margin: 1.25rem auto;
 
 }
-
+.top-spacing{
+  margin-top: 1rem;
+}
 /* styling main text of page */
 .recipes-title{
   background: linear-gradient(180deg, #ffffff, #fbfdff);
