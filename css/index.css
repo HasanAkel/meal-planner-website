@@ -27,6 +27,26 @@
   margin-bottom: 2rem;
 }
 
+.glass-card h3 {
+  margin: 0.3rem 0 0.6rem 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.glass-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.glass-card ul li:before {
+  content: "•";
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
 
 /* adjustments for home page on smaller screens */
 @media (max-width: 768px) {
