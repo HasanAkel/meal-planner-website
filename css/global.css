@@ -9,6 +9,13 @@ html, body {
   background: #f5f7fb; 
 }
 
+/* no gap between navbar and top of page */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f5f7fb;
+}
+
 
 /* styling for header and navigation bar */
 header{
