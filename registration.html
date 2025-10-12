@@ -30,16 +30,35 @@ etc
             <a href="index.html" class="nav-element">Home</a>
             <a href="recipes.html" class="nav-element">Recipes</a>
             <a href="planner.html" class="nav-element">Planner</a>
-            <a href="tracker.html" class="nav-element active">Tracker</a>
+            <a href="tracker.html" class="nav-element active">Tracker</a><!--still need to decide which page will be active page-->
         </nav>
         </header>
 
 
         <main>
-            <div class="ai-registration-container">
+            <div class="ai-registration-container" id="ai-registration-container">
+                <div id="ai-welcome-page">
                 <h2>Welcome to PrepPal!</h2>
                 <p>Let's get started by setting up your personalized meal plan. Our AI assistant will guide you through a few questions to tailor the experience just for you.</p>
                 <button id="start-ai-btn" class="btn">Start AI Setup</button>
+                </div>
+            <div id="mode-selection" style="display:none;">
+    <h3 class="mode-heading">Choose your preferred interaction mode</h3>
+    <div class="mode-cards">
+        <div class="mode-card" id="chat-mode-btn">
+            <img src="imgs/chat-icon.png" alt="Chat Icon">
+            <span>Chat with AI</span>
+        </div>
+        <div class="mode-card" id="voice-mode-btn">
+            <img src="imgs/voice-chat.png" alt="Voice Icon">
+            <span>Talk to AI (Voice)</span>
+        </div>
+    </div>
+</div>
+
+            </div>
+                
         </main>
+        <script src="js/registration.js"></script>
     </body>
 </html>
