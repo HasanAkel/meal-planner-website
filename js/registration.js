@@ -7,3 +7,13 @@ startBtn.addEventListener("click", () => {
     modeSelection.style.flexDirection = "column";
     modeSelection.style.gap = "10px";
 });
+
+const chatModeBtn = document.getElementById("chat-mode-btn");
+const voiceModeBtn = document.getElementById("voice-mode-btn");
+
+chatModeBtn.addEventListener("click", () => {
+    //<!-- Do the backend stuff that will link an ai chatbot to this -->
+});
+voiceModeBtn.addEventListener("click", () => {
+    //<!-- Do the backend stuff that will link an ai voice bot to this -->
+});
