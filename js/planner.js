@@ -5,7 +5,7 @@ const RECIPE_DATA = {
   "BBQ Ribs": { img: "./imgs/ribs.jpg" },
 };
 
-// Make initial text neutral (no “No recipes”)
+// Make initial text neutral
 document.querySelectorAll(".calender-item .hover-info h4").forEach((h4) => {
   h4.textContent = "Choose a recipe";
 });
