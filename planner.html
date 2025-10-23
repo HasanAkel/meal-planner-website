@@ -2,12 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-          <link rel="icon" href="imgs/myfavicon.png" type="image/x-icon">
+        <link rel="icon" href="imgs/myfavicon.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet"> <!--font embedding-->
         <title>Recipes</title>
         <link rel="stylesheet" href="css/global.css">
-        <link rel="stylesheet" href="css/recipes.css">
+        <link rel="stylesheet" href="css/planner.css">
     </head>
 
     <body>
@@ -24,5 +24,99 @@
         </nav>
         </header>
 
+        <main id="mainContainer">
+
+            <section class="plannerCard">
+                <h1>Your Planner</h1>
+                <p class="recipes-sub">Check your recipies and plan ahead.</p>
+            </section>
+
+            <section class="calenderSection">
+
+                <div class="calender-item-container">
+                    <p>Sunday</p>
+                    <div class="calender-item">
+                        <img class="selectedImg" src="./imgs/chicken_veg.jpg" alt="background-image"/>
+                        <!-- JS: after the dropdown is clicked and item is choose I want to hold the selected item and   -->
+                        <!-- add it on to the selected-item section dynamically -->
+                        
+                        <div class="image-container glass-card">
+                            <img src="./imgs/dropdownblack.png" alt=""/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="calender-item-container">
+                    <p>Sunday</p>
+                    <div class="calender-item">
+                        <!-- <img class="selectedImg" src="./imgs/chicken_veg.jpg" alt="background-image"/> -->
+                        <div class="image-container glass-card">
+                            <img src="./imgs/dropdownblack.png" alt=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="calender-item-container">
+                    <p>Monday</p>
+                    <div class="calender-item">
+                        <!-- <img class="selectedImg" src="./imgs/chicken_veg.jpg" alt="background-image"/> -->
+                        <div class="image-container glass-card">
+                            <img src="./imgs/dropdownblack.png" alt=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="calender-item-container">
+                    <p>Tuesday</p>
+                    <div class="calender-item">
+                        <!-- <img class="selectedImg" src="./imgs/chicken_veg.jpg" alt="background-image"/> -->
+                        <div class="image-container glass-card">
+                            <img src="./imgs/dropdownblack.png" alt=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="calender-item-container">
+                    <p>Wednesday</p>
+                    <div class="calender-item">
+                        <!-- <img class="selectedImg" src="./imgs/chicken_veg.jpg" alt="background-image"/> -->
+                        <div class="image-container glass-card">
+                            <img src="./imgs/dropdownblack.png" alt=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="calender-item-container">
+                    <p>Thursday</p>
+                    <div class="calender-item">
+                        <!-- <img class="selectedImg" src="./imgs/chicken_veg.jpg" alt="background-image"/> -->
+                        <div class="image-container glass-card">
+                            <img src="./imgs/dropdownblack.png" alt=""/>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- JS: Dynamically need to create this based on users choice -->
+            <section class="selected-item">
+                <div class="selected-item-container">
+
+                    <div class="selected-image">
+                        <img src="./imgs/chicken_veg.jpg" alt="Chicken & Veg">
+                    </div>
+
+                    <div class="selected-info">
+                        <h2>Chicken & Veg</h2>
+                        <p>Too tired for a description, so here is a storyy a storyya storyya storyya storyya storyy</p>
+                        
+                        <div class="tags">
+                            <span class="tag calories">350 kcal</span>
+                            <span class="tag protein">25g protein</span>
+                            <span class="tag carbs">30g carbs</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+        <script src="./js/planner.js"></script>
     </body>
 </html>
