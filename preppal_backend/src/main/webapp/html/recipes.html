@@ -3,26 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="icon" href="imgs/myfavicon.png" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet"> <!--font embedding-->
+        <!-- Favicon -->
+        <link rel="icon" href="/preppal_backend/imgs/myfavicon.png" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
         <title>Recipes</title>
-        <link rel="stylesheet" href="css/global.css">
-        <link rel="stylesheet" href="css/recipes.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="/preppal_backend/css/global.css">
+        <link rel="stylesheet" href="/preppal_backend/css/recipes.css">
     </head>
 
     <body>
         <header>
             <a href="index.html" id="logo">
-                <img src="imgs/logo.png" alt="Meal Planner Logo">
+                <img src="/preppal_backend/imgs/logo.png" alt="Meal Planner Logo">
                 <span>PrepPal</span>
             </a>
-        <nav>
-            <a href="index.html" class="nav-element">Home</a>
-            <a href="recipes.html" class="nav-element active">Recipes</a>
-            <a href="planner.html" class="nav-element">Planner</a>
-            <a href="tracker.html" class="nav-element">Tracker</a>
-            <a href="registration.html" class="nav-element">Sign-Up</a>
-        </nav>
+            <nav>
+                <a href="index.html" class="nav-element">Home</a>
+                <a href="recipes.html" class="nav-element active">Recipes</a>
+                <a href="planner.html" class="nav-element">Planner</a>
+                <a href="tracker.html" class="nav-element">Tracker</a>
+                <a href="registration.html" class="nav-element">Sign-Up</a>
+            </nav>
         </header>
 
         <main class="page-spacing"> 
@@ -32,14 +34,14 @@
             </section>
 
             <div id="recipes-controls">
-            <section class="recipes-controls">
-                <input id="recipe-search" type="search" placeholder="Search recipes"/>
-                <button class="btn-secondary" type="button" id="add-recipe-btn">+ Add Recipe</button>
-            </section> <!--need to add js here to make the form only appear after add recipe is clicked-->
-</div>
-            <!--form for adding recipes-->
-            <form id="add-recipe-form" class="card hidden" action="recipes" method="post">
+                <section class="recipes-controls">
+                    <input id="recipe-search" type="search" placeholder="Search recipes"/>
+                    <button class="btn-secondary" type="button" id="add-recipe-btn">+ Add Recipe</button>
+                </section>
+            </div>
 
+            <!-- form for adding recipes -->
+            <form id="add-recipe-form" class="card hidden" action="recipes" method="post">
                 <div class="form-row">
                     <label for="recipe-name">Name</label>
                     <input id="recipe-name" name="name" type="text" placeholder="e.g., Grilled Chicken"/>
@@ -66,32 +68,32 @@
                 </div>
             </form>
 
-        <section class="recipes-samples">
-            <h2 class="samples-title">Example Recipes</h2>
+            <section class="recipes-samples">
+                <h2 class="samples-title">Example Recipes</h2>
 
-            <div class="samples-grid">
-                <article class="glass-card">
-                    <h3>Chicken & Veg Bowl</h3>
-                    <img src="imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl" class="recipe-img">
-                    <p class="meta">520 kcal • chicken, broccoli, carrots, rice</p>
-                </article>
+                <div class="samples-grid">
+                    <article class="glass-card">
+                        <h3>Chicken & Veg Bowl</h3>
+                        <img src="/preppal_backend/imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl" class="recipe-img">
+                        <p class="meta">520 kcal • chicken, broccoli, carrots, rice</p>
+                    </article>
 
-            <article class="glass-card">
-                <h3>Tuna Avocado Wrap</h3>
-                <img src="imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap" class="recipe-img">
-                <p class="meta">430 kcal • tuna, avocado, tortilla, lettuce</p>
-            </article>
+                    <article class="glass-card">
+                        <h3>Tuna Avocado Wrap</h3>
+                        <img src="/preppal_backend/imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap" class="recipe-img">
+                        <p class="meta">430 kcal • tuna, avocado, tortilla, lettuce</p>
+                    </article>
 
-            <article class="glass-card">
-                <h3>Garlic Lemon Salmon</h3>
-                <img src="imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon" class="recipe-img">
-                <p class="meta">510 kcal • salmon, lemon, garlic, asparagus</p>
-                </article>
-
-            </div>
-        </section>
-
+                    <article class="glass-card">
+                        <h3>Garlic Lemon Salmon</h3>
+                        <img src="/preppal_backend/imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon" class="recipe-img">
+                        <p class="meta">510 kcal • salmon, lemon, garlic, asparagus</p>
+                    </article>
+                </div>
+            </section>
         </main>
-        <script src="js/recipes.js"></script>
+
+        <!-- JS -->
+        <script src="/preppal_backend/js/recipes.js"></script>
     </body>
 </html>

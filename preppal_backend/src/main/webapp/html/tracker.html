@@ -3,190 +3,198 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="icon" href="imgs/myfavicon.png" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet"> <!--font embedding-->
-        <title>Recipes</title>
-        <link rel="stylesheet" href="css/global.css">
-        <link rel="stylesheet" href="css/tracker.css">
+
+        <!-- Favicon -->
+        <link rel="icon" href="/preppal_backend/imgs/myfavicon.png" type="image/x-icon">
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+        <title>Tracker</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/preppal_backend/css/global.css">
+        <link rel="stylesheet" href="/preppal_backend/css/tracker.css">
     </head>
 
     <body>
         <header>
             <a href="index.html" id="logo">
-                <img src="imgs/logo.png" alt="Meal Planner Logo">
+                <img src="/preppal_backend/imgs/logo.png" alt="Meal Planner Logo">
                 <span>PrepPal</span>
             </a>
-        <nav>
-            <a href="index.html" class="nav-element">Home</a>
-            <a href="recipes.html" class="nav-element">Recipes</a>
-            <a href="planner.html" class="nav-element">Planner</a>
-            <a href="tracker.html" class="nav-element active">Tracker</a>
-            <a href="registration.html" class="nav-element">Sign-Up</a>
-        </nav>
+            <nav>
+                <a href="index.html" class="nav-element">Home</a>
+                <a href="recipes.html" class="nav-element">Recipes</a>
+                <a href="planner.html" class="nav-element">Planner</a>
+                <a href="tracker.html" class="nav-element active">Tracker</a>
+                <a href="registration.html" class="nav-element">Sign-Up</a>
+            </nav>
         </header>
+
         <main>
-        <div class="tracker-container">
-            <div class="tracker-header">
-                <h1>Your Progress Tracker</h1>
-                <p>Monitor your nutrition, track your favorite recipes, and visualize your journey.</p>
-            </div>
+            <div class="tracker-container">
+                <div class="tracker-header">
+                    <h1>Your Progress Tracker</h1>
+                    <p>Monitor your nutrition, track your favorite recipes, and visualize your journey.</p>
+                </div>
 
-            <div class="time-filter">           <!-- These are filter buttons for time, pressing the relevant button should show the data and charts for the corresponding time period-->
-                <button class="time-filter-btn active">Today</button>
-                <button class="time-filter-btn">This Week</button>
-                <button class="time-filter-btn">This Month</button>
-            </div>
+                <div class="time-filter">
+                    <button class="time-filter-btn active">Today</button>
+                    <button class="time-filter-btn">This Week</button>
+                    <button class="time-filter-btn">This Month</button>
+                </div>
 
-            <div class="tracker-section">
-                <div class="tracker-grid">
-                    <!-- Calorie Tracking Card -->
+                <div class="tracker-section">
+                    <div class="tracker-grid">
+                        <!-- Calorie Tracking Card -->
+                        <div class="glass-card">
+                            <h2>Calorie Intake</h2>
+                            <div class="calorie-summary">
+                                <div class="calorie-item">
+                                    <div class="calorie-value" id="calories-consumed">1,250</div>
+                                    <div class="calorie-label">Consumed</div>
+                                </div>
+                                <div class="calorie-item">
+                                    <div class="calorie-value" id="calories-goal">2,000</div>
+                                    <div class="calorie-label">Daily Goal</div>
+                                </div>
+                                <div class="calorie-item">
+                                    <div class="calorie-value" id="calories-remaining">750</div>
+                                    <div class="calorie-label">Remaining</div>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 62.5%"></div>
+                            </div>
+                            <p>You've consumed 62.5% of your daily calorie goal</p>
+                        </div>
+
+                        <!-- Macronutrients Card -->
+                        <div class="glass-card">
+                            <h2>Macronutrients</h2>
+                            <div class="macronutrient">
+                                <div class="macro-header">
+                                    <span>Protein</span>
+                                    <span>65g / 120g</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 54%; background: #34d399;"></div>
+                                </div>
+                            </div>
+                            <div class="macronutrient">
+                                <div class="macro-header">
+                                    <span>Carbs</span>
+                                    <span>150g / 250g</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%; background: #3b82f6;"></div>
+                                </div>
+                            </div>
+                            <div class="macronutrient">
+                                <div class="macro-header">
+                                    <span>Fats</span>
+                                    <span>40g / 65g</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 61.5%; background: #f59e0b;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weekly Calorie Chart -->
+                    <div class="glass-card" id="calorie-chart">
+                        <h2>Weekly Calorie Intake</h2>
+                        <div class="chart-container">
+                            <div class="chart">
+                                <div class="chart-bar" style="height: 70%">
+                                    <div class="chart-label">Mon</div>
+                                </div>
+                                <div class="chart-bar" style="height: 85%">
+                                    <div class="chart-label">Tue</div>
+                                </div>
+                                <div class="chart-bar" style="height: 65%">
+                                    <div class="chart-label">Wed</div>
+                                </div>
+                                <div class="chart-bar" style="height: 90%">
+                                    <div class="chart-label">Thu</div>
+                                </div>
+                                <div class="chart-bar" style="height: 75%">
+                                    <div class="chart-label">Fri</div>
+                                </div>
+                                <div class="chart-bar" style="height: 50%">
+                                    <div class="chart-label">Sat</div>
+                                </div>
+                                <div class="chart-bar" style="height: 40%">
+                                    <div class="chart-label">Sun</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Percentage of daily calorie goal achieved each day</p>
+                    </div>
+
+                    <!-- Recent Recipes Card -->
                     <div class="glass-card">
-                        <h2>Calorie Intake</h2>
-                        <div class="calorie-summary">
-                            <div class="calorie-item">
-                                <div class="calorie-value" id="calories-consumed">1,250</div>    <!--#calories-consumed, #calories-goal, #calories-remaining will be updated with respect to users data-->
-                                <div class="calorie-label">Consumed</div>
-                            </div>
-                            <div class="calorie-item">
-                                <div class="calorie-value" id="calories-goal">2,000</div>
-                                <div class="calorie-label">Daily Goal</div>
-                            </div>
-                            <div class="calorie-item">
-                                <div class="calorie-value" id="calories-remaining">750</div>
-                                <div class="calorie-label">Remaining</div>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 62.5%"></div>    <!-- progression will be updated with respect to users data-->
-                        </div>
-                        <p>You've consumed 62.5% of your daily calorie goal</p>       <!-- same progression percentage here -->
+                        <h2>Recent Recipes</h2>
+                        <ul class="recipe-list">
+                            <li class="recipe-item">
+                                <img src="/preppal_backend/imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl" class="recipe-img">
+                                <div class="recipe-info">
+                                    <h3 class="recipe-name">Chicken & Veg Bowl</h3>
+                                    <p class="recipe-meta">Consumed: Today, Lunch</p>
+                                </div>
+                                <div class="recipe-calories">520 kcal</div>
+                            </li>
+                            <li class="recipe-item">
+                                <img src="/preppal_backend/imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap" class="recipe-img">
+                                <div class="recipe-info">
+                                    <h3 class="recipe-name">Tuna Avocado Wrap</h3>
+                                    <p class="recipe-meta">Consumed: Today, Breakfast</p>
+                                </div>
+                                <div class="recipe-calories">430 kcal</div>
+                            </li>
+                            <li class="recipe-item">
+                                <img src="/preppal_backend/imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon" class="recipe-img">
+                                <div class="recipe-info">
+                                    <h3 class="recipe-name">Garlic Lemon Salmon</h3>
+                                    <p class="recipe-meta">Consumed: Yesterday, Dinner</p>
+                                </div>
+                                <div class="recipe-calories">510 kcal</div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <!-- Macronutrients Card -->
+                    <!-- Most Used Recipes Card -->
                     <div class="glass-card">
-                        <h2>Macronutrients</h2>
-                        <div class="macronutrient">
-                            <div class="macro-header">
-                                <span>Protein</span>
-                                <span>65g / 120g</span>    <!-- Each numerical value in the span will be updated accordingly and the progression bar percentage will be based off of this -->
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 54%; background: #34d399;"></div>
-                            </div>
-                        </div>
-                        <div class="macronutrient">
-                            <div class="macro-header">
-                                <span>Carbs</span>
-                                <span>150g / 250g</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 60%; background: #3b82f6;"></div>
-                            </div>
-                        </div>
-                        <div class="macronutrient">
-                            <div class="macro-header">
-                                <span>Fats</span>
-                                <span>40g / 65g</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 61.5%; background: #f59e0b;"></div>
-                            </div>
-                        </div>
+                        <h2>Most Used Recipes</h2>
+                        <ul class="recipe-list">
+                            <li class="recipe-item">
+                                <img src="/preppal_backend/imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl" class="recipe-img">
+                                <div class="recipe-info">
+                                    <h3 class="recipe-name">Chicken & Veg Bowl</h3>
+                                    <p class="recipe-meta">Used 12 times this month</p>
+                                </div>
+                            </li>
+                            <li class="recipe-item">
+                                <img src="/preppal_backend/imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap" class="recipe-img">
+                                <div class="recipe-info">
+                                    <h3 class="recipe-name">Tuna Avocado Wrap</h3>
+                                    <p class="recipe-meta">Used 8 times this month</p>
+                                </div>
+                            </li>
+                            <li class="recipe-item">
+                                <img src="/preppal_backend/imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon" class="recipe-img">
+                                <div class="recipe-info">
+                                    <h3 class="recipe-name">Garlic Lemon Salmon</h3>
+                                    <p class="recipe-meta">Used 6 times this month</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-
-                <!-- Weekly Calorie Chart, but we should also implement monthly and yearly for the time filter buttons -->
-                <div class="glass-card" id="calorie-chart">
-                    <h2>Weekly Calorie Intake</h2>
-                    <div class="chart-container">
-                        <div class="chart">
-                            <div class="chart-bar" style="height: 70%">   <!-- Similarly, each day's progression can be updated -->
-                                <div class="chart-label">Mon</div>
-                            </div>
-                            <div class="chart-bar" style="height: 85%">
-                                <div class="chart-label">Tue</div>
-                            </div>
-                            <div class="chart-bar" style="height: 65%">
-                                <div class="chart-label">Wed</div>
-                            </div>
-                            <div class="chart-bar" style="height: 90%">
-                                <div class="chart-label">Thu</div>
-                            </div>
-                            <div class="chart-bar" style="height: 75%">
-                                <div class="chart-label">Fri</div>
-                            </div>
-                            <div class="chart-bar" style="height: 50%">
-                                <div class="chart-label">Sat</div>
-                            </div>
-                            <div class="chart-bar" style="height: 40%">
-                                <div class="chart-label">Sun</div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>Percentage of daily calorie goal achieved each day</p>
-                </div>
-
-                <!-- Recent Recipes Card -->
-                <div class="glass-card">
-                    <h2>Recent Recipes</h2>    <!-- This will be grabbed from the users most recent recipes, with all relevant info including image (for the default recipes, this already exists)-->
-                    <ul class="recipe-list">
-                        <li class="recipe-item">
-                            <img src="imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl" class="recipe-img">
-                            <div class="recipe-info">
-                                <h3 class="recipe-name">Chicken & Veg Bowl</h3>
-                                <p class="recipe-meta">Consumed: Today, Lunch</p>
-                            </div>
-                            <div class="recipe-calories">520 kcal</div>
-                        </li>
-                        <li class="recipe-item">
-                            <img src="imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap" class="recipe-img">
-                            <div class="recipe-info">
-                                <h3 class="recipe-name">Tuna Avocado Wrap</h3>
-                                <p class="recipe-meta">Consumed: Today, Breakfast</p>
-                            </div>
-                            <div class="recipe-calories">430 kcal</div>
-                        </li>
-                        <li class="recipe-item">
-                            <img src="imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon" class="recipe-img">
-                            <div class="recipe-info">
-                                <h3 class="recipe-name">Garlic Lemon Salmon</h3>
-                                <p class="recipe-meta">Consumed: Yesterday, Dinner</p>
-                            </div>
-                            <div class="recipe-calories">510 kcal</div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Most Used Recipes Card -->   <!-- Same concept as the previous card just on a larger scale -->
-                <div class="glass-card">
-                    <h2>Most Used Recipes</h2>
-                    <ul class="recipe-list">
-                        <li class="recipe-item">
-                            <img src="imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl" class="recipe-img">
-                            <div class="recipe-info">
-                                <h3 class="recipe-name">Chicken & Veg Bowl</h3>
-                                <p class="recipe-meta">Used 12 times this month</p>
-                            </div>
-                        </li>
-                        <li class="recipe-item">
-                            <img src="imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap" class="recipe-img">
-                            <div class="recipe-info">
-                                <h3 class="recipe-name">Tuna Avocado Wrap</h3>
-                                <p class="recipe-meta">Used 8 times this month</p>
-                            </div>
-                        </li>
-                        <li class="recipe-item">
-                            <img src="imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon" class="recipe-img">
-                            <div class="recipe-info">
-                                <h3 class="recipe-name">Garlic Lemon Salmon</h3>
-                                <p class="recipe-meta">Used 6 times this month</p>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
-        </div>
-    </main>
-    <script src="js/tracker.js"></script>
+        </main>
+
+        <!-- JS -->
+        <script src="/preppal_backend/js/tracker.js"></script>
     </body>
 </html>
