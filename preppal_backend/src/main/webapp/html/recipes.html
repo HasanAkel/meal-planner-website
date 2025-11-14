@@ -3,11 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <!-- Favicon -->
-            <link rel="icon" href="/preppal_backend/imgs/myfavicon.png" type="image/x-icon"/>
-        
+        <link rel="icon" href="/preppal_backend/imgs/myfavicon.png" type="image/x-icon"/>
+
+        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
         <title>Recipes</title>
+
         <!-- CSS -->
         <link rel="stylesheet" href="/preppal_backend/css/global.css">
         <link rel="stylesheet" href="/preppal_backend/css/recipes.css">
@@ -19,6 +23,7 @@
                 <img src="/preppal_backend/imgs/logo.png" alt="Meal Planner Logo">
                 <span>PrepPal</span>
             </a>
+
             <nav>
                 <a href="index.html" class="nav-element">Home</a>
                 <a href="recipes.html" class="nav-element active">Recipes</a>
@@ -29,11 +34,14 @@
         </header>
 
         <main class="page-spacing"> 
+
+            <!-- Page Title -->
             <section class="recipes-title">
                 <h1>Your Recipes</h1>
                 <p class="recipes-sub">Search, add, and browse your saved meals.</p>
             </section>
 
+            <!-- Search + Add Button -->
             <div id="recipes-controls">
                 <section class="recipes-controls">
                     <input id="recipe-search" type="search" placeholder="Search recipes"/>
@@ -41,8 +49,8 @@
                 </section>
             </div>
 
-            <!-- form for adding recipes -->
-           <form id="add-recipe-form" class="card hidden" action="/preppal_backend/recipes" method="post">
+            <!-- Add Recipe Form -->
+            <form id="add-recipe-form" class="card hidden" action="/preppal_backend/recipes" method="post">
 
                 <div class="form-row">
                     <label for="recipe-name">Name</label>
@@ -61,7 +69,7 @@
 
                 <div class="form-row">
                     <label for="recipe-image">Image</label>
-                    <input id="recipe-image" name="image" type="file" accept="image/*" placeholder="Select an image from files"/>
+                    <input id="recipe-image" name="image" type="file" accept="image/*"/>
                 </div>
 
                 <div class="form-actions">
@@ -70,6 +78,16 @@
                 </div>
             </form>
 
+            <!-- SAVED RECIPES (dynamic from DB) -->
+            <section id="saved-recipes-section" class="recipes-samples hidden">
+                <h2 class="samples-title">Saved Recipes</h2>
+
+                <div id="saved-recipes-grid" class="samples-grid">
+                    <!-- JS injects saved recipes here -->
+                </div>
+            </section>
+
+            <!-- EXAMPLE RECIPES (static) -->
             <section class="recipes-samples">
                 <h2 class="samples-title">Example Recipes</h2>
 
@@ -93,6 +111,7 @@
                     </article>
                 </div>
             </section>
+
         </main>
 
         <!-- JS -->

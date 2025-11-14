@@ -2,6 +2,7 @@ const addRecipeBtn = document.getElementById("add-recipe-btn");
 const addRecipeForm = document.getElementById("add-recipe-form");
 const recipeControlsSection = document.getElementById("recipes-controls");
 const cancelBtn = document.getElementById("cancel-btn");
+const searchInput = document.getElementById("recipe-search");
 
 const RECIPES_URL = "/preppal_backend/recipes";
 
@@ -17,6 +18,7 @@ addRecipeBtn.addEventListener("click", function () {
     recipeControlsSection.classList.add("hidden");
 });
 
+// Submit handler: send data via query string (works with getParameter)
 addRecipeForm.addEventListener("submit", function (event) {
     event.preventDefault(); // prevent full page reload
 
@@ -29,48 +31,128 @@ addRecipeForm.addEventListener("submit", function (event) {
     const imageInput = document.getElementById("recipe-image");
     const imagePath = imageInput.files.length > 0 ? imageInput.files[0].name : "";
 
-    // Build query string instead of body
+    // Build query string
     const params = new URLSearchParams();
     params.append("name", name);
     params.append("calories", calories);
     params.append("ingredients", ingredients);
     params.append("image", imagePath);
 
-    // Send POST request with parameters in the URL
     fetch(`${RECIPES_URL}?${params.toString()}`, {
         method: "POST"
-        // no body, no Content-Type needed
     })
         .then(() => {
             addRecipeForm.classList.add("hidden");
             recipeControlsSection.classList.remove("hidden");
             addRecipeForm.reset();
-            loadSavedRecipes();
+            loadSavedRecipes();   // refresh list after save
         })
         .catch(err => console.error("Error while saving recipe:", err));
 });
-
 
 function loadSavedRecipes() {
     fetch(RECIPES_URL)
         .then(response => response.json())
         .then(data => {
+            const section = document.getElementById("saved-recipes-section");
             const grid = document.getElementById("saved-recipes-grid");
-            if (!grid) return;
 
+            if (!section || !grid) return;
+
+            // Clear previous content & any old "no results" message
             grid.innerHTML = "";
+
+            // If no recipes in DB, hide the whole section
+            if (!Array.isArray(data) || data.length === 0) {
+                section.classList.add("hidden");
+                return;
+            }
+
+            // We have data → show section
+            section.classList.remove("hidden");
 
             data.forEach(r => {
                 const card = document.createElement("article");
                 card.className = "glass-card";
+
+                // Optional image
+                let imgHtml = "";
+                if (r.imagePath && r.imagePath.trim() !== "") {
+                    imgHtml = `
+                        <img src="/preppal_backend/imgs/${r.imagePath}" 
+                             alt="${r.name}" 
+                             class="recipe-img">
+                    `;
+                }
+
                 card.innerHTML = `
                     <h3>${r.name}</h3>
+                    ${imgHtml}
                     <p class="meta">${r.calories} kcal • ${r.ingredients}</p>
                 `;
+
                 grid.appendChild(card);
             });
+
+            // After loading, re-apply current search term (if any)
+            applyRecipeSearchFilter();
         })
         .catch(err => console.error("Error loading saved recipes:", err));
 }
 
+// Apply search only to SAVED recipes, not example recipes
+
+function applyRecipeSearchFilter() {
+    const grid = document.getElementById("saved-recipes-grid");
+    const section = document.getElementById("saved-recipes-section");
+    if (!grid || !section) return;
+
+    // Older compatible way (no optional chaining)
+    let term = "";
+    if (searchInput && searchInput.value) {
+        term = searchInput.value;
+    }
+    term = term.toLowerCase().trim();
+
+    const cards = grid.querySelectorAll(".glass-card");
+
+    // Remove old "no results" message if present
+    const oldMsg = document.getElementById("no-recipes-message");
+    if (oldMsg) oldMsg.remove();
+
+    // If there are no cards at all, nothing to filter
+    if (cards.length === 0) {
+        return;
+    }
+
+    let anyVisible = false;
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const match = term === "" || text.includes(term);
+
+        card.style.display = match ? "" : "none";
+
+        if (match) {
+            anyVisible = true;
+        }
+    });
+
+    // If user typed something AND no cards are visible → show message
+    if (term !== "" && !anyVisible) {
+        const msg = document.createElement("p");
+        msg.id = "no-recipes-message";
+        msg.className = "meta";
+        msg.textContent = "No recipes with that name.";
+        grid.appendChild(msg);
+    }
+}
+
+
+// Attach search listener (only affects saved recipes)
+if (searchInput) {
+    searchInput.addEventListener("input", applyRecipeSearchFilter);
+}
+
+// Load existing recipes (if any) when page loads
 loadSavedRecipes();
