@@ -9,29 +9,51 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RecipeDao {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/preppal";
+    // JDBC connection info –> CHANGE PASSWORD ONLY
+    private static final String URL = "jdbc:mysql://localhost:3306/preppal?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "yourPassword";
+    private static final String PASSWORD = ""; // <– put your real password
 
-    public void addRecipe(Recipe r) throws SQLException {
-        String sql = "INSERT INTO recipes(name, calories, ingredients, image_path) VALUES (?,?,?,?)";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, r.getName());
-            ps.setInt(2, r.getCalories());
-            ps.setString(3, r.getIngredients());
-            ps.setString(4, r.getImagePath());
+    // Load driver (good style for course)
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+
+    // INSERT new recipe
+    public void addRecipe(Recipe recipe) throws SQLException {
+        String sql = "INSERT INTO recipes (name, calories, ingredients, image_path) " +
+                     "VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, recipe.getName());
+            ps.setInt(2, recipe.getCalories());
+            ps.setString(3, recipe.getIngredients());
+            ps.setString(4, recipe.getImagePath());
             ps.executeUpdate();
         }
     }
 
+    // SELECT * FROM recipes
     public List<Recipe> getAllRecipes() throws SQLException {
         List<Recipe> list = new ArrayList<>();
-        String sql = "SELECT * FROM recipes";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement st = con.createStatement();
+
+        String sql = "SELECT id, name, calories, ingredients, image_path FROM recipes";
+
+        try (Connection conn = getConnection();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
 
             while (rs.next()) {
@@ -41,9 +63,12 @@ public class RecipeDao {
                 r.setCalories(rs.getInt("calories"));
                 r.setIngredients(rs.getString("ingredients"));
                 r.setImagePath(rs.getString("image_path"));
+
                 list.add(r);
             }
         }
+
         return list;
     }
 }
+

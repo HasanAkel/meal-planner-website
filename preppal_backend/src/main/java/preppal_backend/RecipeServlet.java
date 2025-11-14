@@ -10,55 +10,99 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
+
 @WebServlet("/recipes")
 public class RecipeServlet extends HttpServlet {
 
-    private RecipeDao dao = new RecipeDao();
+    private static final long serialVersionUID = 1L;
 
+    private RecipeDao recipeDao = new RecipeDao();
+
+    // CREATE (form submission)
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String name = request.getParameter("name");
-        int calories = Integer.parseInt(request.getParameter("calories"));
-        String ingredients = request.getParameter("ingredients");
-        String imagePath = request.getParameter("image"); // for now: just filename or text
+        request.setCharacterEncoding("UTF-8");
 
-        Recipe r = new Recipe();
-        r.setName(name);
-        r.setCalories(calories);
-        r.setIngredients(ingredients);
-        r.setImagePath(imagePath);
+        String name = request.getParameter("name");
+        String caloriesStr = request.getParameter("calories");
+        String ingredients = request.getParameter("ingredients");
+        String imagePath = request.getParameter("image"); // for now just the filename/text
+        
+        System.out.println("---- Incoming POST /recipes ----");
+        System.out.println("name = " + name);
+        System.out.println("caloriesStr = " + caloriesStr);
+        System.out.println("ingredients = " + ingredients);
+        System.out.println("imagePath = " + imagePath);
+
+        int calories = 0;
+        try {
+            if (caloriesStr != null && !caloriesStr.isEmpty()) {
+                calories = Integer.parseInt(caloriesStr);
+            }
+        } catch (NumberFormatException e) {
+            // keep calories = 0 if parsing fails
+        }
+
+        Recipe recipe = new Recipe(name, calories, ingredients, imagePath);
 
         try {
-            dao.addRecipe(r);
-            // after create: either redirect or return JSON
-            response.sendRedirect("recipes.html"); // simplest: reload page
+            recipeDao.addRecipe(recipe);
+            // Because we are using fetch() and handling reload in JS,
+            // just return a simple 200 OK with a small message.
+            response.setContentType("text/plain");
+            response.getWriter().write("OK");
         } catch (SQLException e) {
-            throw new ServletException(e);
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
         }
+        
+        
     }
 
+    // READ (return JSON list for JS)
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
-            List<Recipe> recipes = dao.getAllRecipes();
-            // Very simple JSON output (or use Jackson like in your shopping list example)
-            out.print("[");
+            List<Recipe> recipes = recipeDao.getAllRecipes();
+
+            StringBuilder json = new StringBuilder();
+            json.append("[");
+
             for (int i = 0; i < recipes.size(); i++) {
                 Recipe r = recipes.get(i);
-                out.print("{\"name\":\"" + r.getName() + "\","
-                        + "\"calories\":" + r.getCalories() + ","
-                        + "\"ingredients\":\"" + r.getIngredients() + "\"}");
-                if (i < recipes.size() - 1) out.print(",");
+                json.append("{");
+                json.append("\"id\":").append(r.getId()).append(",");
+                json.append("\"name\":\"").append(escapeJson(r.getName())).append("\",");
+                json.append("\"calories\":").append(r.getCalories()).append(",");
+                json.append("\"ingredients\":\"").append(escapeJson(r.getIngredients())).append("\",");
+                json.append("\"imagePath\":\"").append(escapeJson(r.getImagePath())).append("\"");
+                json.append("}");
+
+                if (i < recipes.size() - 1) {
+                    json.append(",");
+                }
             }
-            out.print("]");
+
+            json.append("]");
+            out.print(json.toString());
         } catch (SQLException e) {
-            throw new ServletException(e);
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
         }
+    }
+
+    // Simple JSON string escaper (handles quotes and backslashes)
+    private String escapeJson(String s) {
+        if (s == null) return "";
+        return s.replace("\\", "\\\\")
+                .replace("\"", "\\\"");
     }
 }
 
