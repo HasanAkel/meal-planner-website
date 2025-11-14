@@ -1,0 +1,156 @@
+* { 
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0; 
+}
+a { 
+    text-decoration: none; color: inherit; 
+}
+
+html, body { 
+  background: #f5f7fb; 
+  margin: 0;
+  padding: 0;
+}
+
+.hidden{
+  display: none;
+}
+
+/* styling for header and navigation bar */
+header{
+  background-color: #a7f3d0;
+  color: #064e3b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+nav { 
+    display: flex; 
+    justify-content: right; 
+}
+
+.nav-element{
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.nav-element:hover { 
+    background: rgba(0,0,0,0.1); 
+    transform: translateY(-1px); 
+}
+
+.nav-element.active{ 
+    background: rgba(6,78,59,0.1); 
+    font-weight: 700; 
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;             
+  font-size: 1.3rem;       
+  font-weight: 800;        
+  color: #064e3b;        
+}
+
+#logo img {
+  height: 70px;  
+  width: auto;
+}
+
+#logo span {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #064e3b;
+}
+
+
+
+/* stlying primary button that will be used across pages */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  background-color: #34d399;
+  color: #fff;
+  padding: 0.8em 1.6em;
+  border: 2px solid #059669;
+  border-radius: 999px; /* pill shaped */
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  margin-top: 1.5rem;
+}
+
+.btn:hover {
+  background-color: #059669;
+  border-color: #047857;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* --- shared glassy card style (used across pages) --- */
+.glass-card {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.glass-card h3 {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.1rem;
+}
+
+.glass-card p, .glass-card ul {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.mini-card {
+  width: min(360px, 90%);
+  margin-top: 1rem;
+}
+
+.mini-card ul {
+  list-style: none; /*removes the bullet points of the ul*/
+}
+.mini-card ul li {
+  margin-bottom: 0.4rem; /* adds small spacing between each line */
+}
+
+
+
+
+
+/* adjustments for smaller screens */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+  }
+
+  #logo {
+    font-size: 1.4rem;
+  }
+}

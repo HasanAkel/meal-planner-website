@@ -38,7 +38,8 @@
             </section> <!--need to add js here to make the form only appear after add recipe is clicked-->
 </div>
             <!--form for adding recipes-->
-            <form id="add-recipe-form" class="card hidden" autocomplete="off">
+            <form id="add-recipe-form" class="card hidden" action="recipes" method="post">
+
                 <div class="form-row">
                     <label for="recipe-name">Name</label>
                     <input id="recipe-name" name="name" type="text" placeholder="e.g., Grilled Chicken"/>
@@ -55,8 +56,8 @@
                 </div>
 
                 <div class="form-row">
-                    <label for="recipe-image">Image URL</label>
-                    <input id="recipe-image" name="image" type="url" placeholder="https://example.com/photo.jpg"/>
+                    <label for="recipe-image">Image</label>
+                    <input id="recipe-image" name="image" type="file" accept="image/*" placeholder="Select an image from files"/>
                 </div>
 
                 <div class="form-actions">
