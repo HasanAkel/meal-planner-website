@@ -32,11 +32,9 @@ public class RecipeDao {
 
     // INSERT new recipe
     public void addRecipe(Recipe recipe) throws SQLException {
-        String sql = "INSERT INTO recipes (name, calories, ingredients, image_path) " +
-                     "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO recipes (name, calories, ingredients, image_path) " + "VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, recipe.getName());
             ps.setInt(2, recipe.getCalories());
