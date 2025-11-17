@@ -12,12 +12,12 @@ import java.util.List;
 
 public class RecipeDao {
 
-    // JDBC connection info –> CHANGE PASSWORD ONLY
+    // JDBC connection info
     private static final String URL = "jdbc:mysql://localhost:3306/preppal?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = ""; // <– put your real password
 
-    // Load driver (good style for course)
+
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
