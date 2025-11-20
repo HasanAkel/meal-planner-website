@@ -32,19 +32,26 @@
 }
 
 .plannerBtns{
-  font-size: 1rem;
-  padding: 12px 15px;
   display: flex;
   align-items: center;
   gap: 13px;
-  border-radius: 5px;
-  border: 1.5px rgb(216, 216, 216) solid;
   outline: none;
   cursor: pointer;
+  background: #6d7178;
+  color: #fff;
+  padding: 1em 1.5em;
+  border: 2px solid #363d45;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.plannerBtns:hover { 
+  background: #272d36;
 }
 
 .fa-floppy-disk, .fa-print{
-  color: rgb(80, 80, 80);
+  color: #d9d9d9;
 }
 
 /* Calender grid 
@@ -187,7 +194,7 @@
   white-space: nowrap;
 }
 .calories { background-color: #ffdfdf; color: #ff7878; }
-.protein  { background-color: #ccf5f2; color: #429993; }
+.protein  { background-color: #bafaaf; color: #4bab3a; }
 .carbs    { background-color: #fff0cf; color: #bc9542; }
 
 
@@ -206,58 +213,63 @@
 }
 
 .stat-headings{
-  font-size: 1.3rem;
-  font-weight: 700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:4px 6px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  border-radius:10px;
+  font-family: "Poppins", sans-serif;
 }
 
-.stat-headings > .fa-leaf {
-  color: green;
-}
-.stat-headings > .fa-fire {
-  color: red;
-}
-.stat-headings > .fa-plate-wheat {
-  color: #b19d02;
+.stat-eng{
+	background-color: #fcbe8d !important;
+}.stat-eng > i{
+	color: #FF7E36 !important;
 }
 
-.stat-grid{
-  flex:1;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);  
-  gap: 1.5rem;                             
-  max-width: 700px;                      
-  margin: 0 auto;
-  text-align: center;
+.stat-prot{
+	background-color: #d1ffc9 !important;
+}
+.stat-prot > i{
+	color: #38761d !important;
 }
 
-.summary-header-info{
-  width: 350px;
+.stat-carb{
+	background-color: #f7e9d9 !important;
 }
+.stat-carb > i{
+	color: #996515 !important; 
+}
+
+.summary-header-info > h2{
+	font-size: 50px;  
+}
+
+.summary-header-info > p{
+	color:#4a4a4a;
+}
+
 
 .week-summary-selected{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  
+  gap: 20px;
   margin-top: 100px;
 }
 
 .selected-info{
-  width: 350px;
-  height: 290px;
-  background-color: #d7d6d6 !important;
   border-radius: 10px;
 }
 
-.week-summary-selected > .stat-grid{
-  font-size: 1.8rem;
-  margin-bottom: auto !important;
-}
 
 .selected-img{
   object-fit: cover;
   width: 100%;
-  height: 200px;
-  border-radius: 5px 5px 0px 0px;
+  height: 300px;
+  border-radius: 15px;
 }
 
 .img-container{
@@ -270,21 +282,39 @@
   padding: 0px 10px;
 }
 
+.information-selected > h2{
+	color: black !important;
+ 	font-family: "Playfair Display", serif;
+	font-weight: 400;
+	font-size: 35px;
+	margin-top:10px;
+}
+
+.information-selected > hr{
+	color: #363636;
+	width:90%;
+	margin: 10px auto;
+}
+
+.information-selected > p{
+	color: #2e2d2d;
+	font-size: 17px;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 400;
+}
+
+.stat-grid{
+	display:flex;
+	align-items: center;	
+	justify-content:space-between;
+	margin: 20px 0px;
+	padding: 0px 5px;
+}
+
+
 .total-info{
   width: 350px;
   font-size: 2rem;
-}
-
-.total{
-  display: flex;
-  margin-top: 100px;
-  border-top: 2px solid rgb(191, 191, 191);
-  padding-top: 30px;
-}
-
-.total > .stat-grid{
-  font-size: 1.5rem !important;
-  padding-top: 30px;
 }
 
 
