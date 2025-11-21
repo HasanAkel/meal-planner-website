@@ -102,6 +102,21 @@
   border-radius: 8px;
 }
 
+.selected-day{
+	position: absolute;
+	top:0px;
+	right:15px;
+}
+
+.selected-day > p{
+	font-size:11px;
+	background-color: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(5px);
+	border-radius: 4px; 
+	padding: 2px 4px;
+	color:#b8b8b8;
+}
+
 
 .hover-info {
   position: absolute;
@@ -273,7 +288,8 @@
 }
 
 .img-container{
-  width: 100%;
+	position:relative;
+	width: 100%;
 }
 
 .information-selected{
@@ -338,10 +354,105 @@
   .calender-item-container p { font-size: 0.8rem; }
 }
 
-/* neatly lay out the macro tags on one line, wrap only if needed */
 .hover-tags { 
   display: flex; 
   gap: 4px; 
   flex-wrap: wrap; 
   align-items: center;
 }
+
+@media print {
+
+  /* Hide EVERYTHING except weekly summary */
+  header,
+  nav,
+  footer,
+  #calendar,
+  .calenderSection,
+  .plannerCard,
+  .planner-actions,
+  #saveBtn,
+  #printBtn,
+  .image-container,
+  .calender-item-container,
+  .dropdown-menu {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-family: "Poppins", sans-serif;
+  }
+
+  #weekSummary {
+    display: block !important;
+    margin-top: 0 !important;
+    padding: 20px !important;
+  }
+
+  .summary-header-info h2 {
+    font-size: 40px !important;
+    color: black !important;
+    margin-bottom: 5px !important;
+  }
+
+  .summary-header-info p {
+    font-size: 16px !important;
+    color: #555 !important;
+  }
+
+  .summary-tags {
+    margin-top: 10px !important;
+  }
+
+  .week-summary-selected {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px !important;
+    margin-top: 40px !important;
+    page-break-inside: avoid !important;
+  }
+
+  .selected-info {
+    border: 1px solid #d0d0d0;
+    border-radius: 12px;
+    padding: 15px;
+    background: #fff;
+    width: 100% !important;   
+    break-inside: avoid !important; 
+  }
+
+  .selected-img {
+    height: 260px !important;
+    border-radius: 10px !important;
+    object-fit: cover;
+  }
+
+  .selected-day p {
+    font-size: 12px !important;
+    padding: 3px 5px !important;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.55) !important;
+    color: #fff !important;
+  }
+
+  .information-selected h2 {
+    font-size: 30px !important;
+    margin: 10px 0 !important;
+    color: black !important;
+  }
+
+  .information-selected p {
+    font-size: 15px !important;
+    line-height: 1.4;
+  }
+
+  .stat-grid {
+    margin: 15px 0 !important;
+  }
+}
+

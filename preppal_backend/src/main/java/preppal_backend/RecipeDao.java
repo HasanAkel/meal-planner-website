@@ -17,7 +17,7 @@ public class RecipeDao {
     private static final String USER = "root";
     private static final String PASSWORD = "____"; // <– put your real password
 
-
+    
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
