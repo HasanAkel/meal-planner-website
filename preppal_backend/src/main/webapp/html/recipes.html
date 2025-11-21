@@ -52,31 +52,42 @@
             <!-- Add Recipe Form -->
             <form id="add-recipe-form" class="card hidden" action="preppal_backend/recipes" method="post">
 
-                <div class="form-row">
-                    <label for="recipe-name">Name</label>
-                    <input id="recipe-name" name="name" type="text" placeholder="e.g., Grilled Chicken"/>
-                </div>
+    <div class="form-row">
+        <label for="recipe-name">Name</label>
+        <input id="recipe-name" name="name" type="text" placeholder="e.g., Grilled Chicken"/>
+    </div>
 
-                <div class="form-row">
-                    <label for="recipe-calories">Calories</label>
-                    <input id="recipe-calories" name="calories" type="number" min="0" placeholder="e.g., 520"/>
-                </div>
+    <div class="form-row">
+        <label for="recipe-calories">Calories</label>
+        <input id="recipe-calories" name="calories" type="number" min="0" placeholder="e.g., 520"/>
+    </div>
 
-                <div class="form-row">
-                    <label for="recipe-ingredients">Ingredients</label>
-                    <textarea id="recipe-ingredients" name="ingredients" rows="3" placeholder="e.g., chicken, lemon, garlic"></textarea>
-                </div>
+    <div class="form-row">
+        <label for="recipe-protein">Protein (g)</label>
+        <input id="recipe-protein" name="protein" type="number" min="0" placeholder="e.g., 35"/>
+    </div>
 
-                <div class="form-row">
-                    <label for="recipe-image">Image</label>
-                    <input id="recipe-image" name="image" type="file" accept="image/*"/>
-                </div>
+    <div class="form-row">
+        <label for="recipe-carbs">Carbs (g)</label>
+        <input id="recipe-carbs" name="carbs" type="number" min="0" placeholder="e.g., 40"/>
+    </div>
 
-                <div class="form-actions">
-                    <button type="submit" class="btn">Save Recipe</button>
-                    <button type="reset" class="btn-ghost" id="cancel-btn">Cancel</button>
-                </div>
-            </form>
+    <div class="form-row">
+        <label for="recipe-ingredients">Ingredients</label>
+        <textarea id="recipe-ingredients" name="ingredients" rows="3" placeholder="e.g., chicken, lemon, garlic"></textarea>
+    </div>
+
+    <div class="form-row">
+        <label for="recipe-image">Image</label>
+        <input id="recipe-image" name="image" type="file" accept="image/*"/>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn">Save Recipe</button>
+        <button type="reset" class="btn-ghost" id="cancel-btn">Cancel</button>
+    </div>
+</form>
+
 
             <!-- SAVED RECIPES (dynamic from DB) -->
             <section id="saved-recipes-section" class="recipes-samples hidden">

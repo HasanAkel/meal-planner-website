@@ -14,7 +14,7 @@ public class PlannerDao {
     // JDBC connection info
     private static final String URL = "jdbc:mysql://localhost:3306/preppal?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "____"; // <– put your real password
+    private static final String PASSWORD = ""; // <– put your real password
     
     static {
         try {

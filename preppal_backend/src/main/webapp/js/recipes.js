@@ -25,6 +25,8 @@ addRecipeForm.addEventListener("submit", function (event) {
     // Grab values manually
     const name = document.getElementById("recipe-name").value;
     const calories = document.getElementById("recipe-calories").value;
+    const protein = document.getElementById("recipe-protein").value;
+    const carbs = document.getElementById("recipe-carbs").value;
     const ingredients = document.getElementById("recipe-ingredients").value;
 
     // For now, just store the file name (or empty string)
@@ -35,6 +37,8 @@ addRecipeForm.addEventListener("submit", function (event) {
     const params = new URLSearchParams();
     params.append("name", name);
     params.append("calories", calories);
+    params.append("protein", protein);
+    params.append("carbs", carbs);
     params.append("ingredients", ingredients);
     params.append("image", imagePath);
 
@@ -85,10 +89,21 @@ function loadSavedRecipes() {
                     `;
                 }
 
+                // Optional protein/carbs text (will show nicely once backend sends these fields)
+                const proteinText = (r.protein != null && r.protein !== 0)
+                    ? `${r.protein} g protein • `
+                    : "";
+                const carbsText = (r.carbs != null && r.carbs !== 0)
+                    ? `${r.carbs} g carbs • `
+                    : "";
+
                 card.innerHTML = `
                     <h3>${r.name}</h3>
                     ${imgHtml}
-                    <p class="meta">${r.calories} kcal • ${r.ingredients}</p>
+                    <p class="meta">
+                        ${r.calories} kcal • 
+                        ${proteinText}${carbsText}${r.ingredients}
+                    </p>
                 `;
 
                 grid.appendChild(card);
@@ -101,7 +116,6 @@ function loadSavedRecipes() {
 }
 
 // Apply search only to SAVED recipes, not example recipes
-
 function applyRecipeSearchFilter() {
     const grid = document.getElementById("saved-recipes-grid");
     const section = document.getElementById("saved-recipes-section");
@@ -147,7 +161,6 @@ function applyRecipeSearchFilter() {
         grid.appendChild(msg);
     }
 }
-
 
 // Attach search listener (only affects saved recipes)
 if (searchInput) {
