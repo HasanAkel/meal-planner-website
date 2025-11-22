@@ -13,7 +13,7 @@ public class UserDao {
     // Connection details (Make sure these match your RecipeDao)
     private static final String URL = "jdbc:mysql://localhost:3306/preppal?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "1234567890qwertyuiop"; // <--- CHECK YOUR PASSWORD HERE
+    private static final String PASSWORD = ""; // <--- CHECK YOUR PASSWORD HERE
 
     static {
         try {

@@ -14,7 +14,7 @@ public class RecipeDao {
     // JDBC connection info
     private static final String URL = "jdbc:mysql://localhost:3306/preppal?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "1234567890qwertyuiop"; // <– put your real password
+    private static final String PASSWORD = ""; // <– put your real password
 
 
     // Load driver once when class loads
