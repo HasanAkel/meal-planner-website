@@ -28,6 +28,11 @@
     display: block;
 }
 
+/* ✅ This is the ONLY addition: hide steps when they have .hidden */
+.reg-step.hidden {
+    display: none;
+}
+
 .step-title {
     color: #34d399;
     font-size: 1.5rem;

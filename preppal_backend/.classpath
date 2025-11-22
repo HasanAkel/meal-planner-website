@@ -13,7 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/hasan/Downloads/Lab11/Lab11/mysql-connector-j-9.5.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/hasan/Documents/Programming/web dev/cmp257/forHashingPasswords/jbcrypt-0.4.jar"/>
+	<classpathentry kind="lib" path="/Users/ahmed/GitHub/meal-planner-website/forHashingPasswords/jbcrypt-0.4.jar"/>
+	<classpathentry kind="lib" path="/Users/ahmed/University/CMP257/mysql-connector-j-9.5.0/mysql-connector-j-9.5.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
