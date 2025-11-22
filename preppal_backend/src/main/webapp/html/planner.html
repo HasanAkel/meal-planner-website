@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <script src="https://kit.fontawesome.com/a12050c6e4.js" crossorigin="anonymous"></script> 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">	
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
     <!-- Favicon -->
     <link rel="icon" href="../imgs/myfavicon.png" type="image/x-icon" />
 
@@ -34,7 +34,8 @@
     </header>
 
     <main id="mainContainer">
-      <section class="plannerCard">
+      <!-- header card -->
+      <section class="plannerCard card-panel">
         <div>
           <h1>Your Planner</h1>
           <p class="recipes-sub">Plan your week at a glance.</p>
@@ -53,7 +54,7 @@
       </section>
 
       <!-- Calendar grid -->
-      <section class="calenderSection" id="calendar">
+      <section class="calenderSection card-panel" id="calendar">
 
         <div class="calender-item-container" data-day="Sunday">
           <p>Sunday</p>
@@ -177,7 +178,7 @@
       </section>
 
       <!-- Weekly totals -->
-      <section class="week-summary" id="weekSummary">
+      <section class="week-summary card-panel" id="weekSummary">
         <div class="week-summary-header">
           <div class="summary-header-info">
             <h2>Weekly Summary</h2>
@@ -191,38 +192,7 @@
         </div>
 
         <div class="week-summary-selected">
-          
-          
-<!--           <div class="selected-info">
-            <div class="img-container">
-              <div class="selected-day">
-              	<p>Sunday</p>
-              </div>
-              <img class="selected-img" src="../imgs/chicken_veg.jpg" alt=""/>
-            </div>
-            <div class="information-selected">
-              <h2>Chicken Salad</h2>
-              <div class="information-stats">
-            	<div class="stat-grid">
-		            <div class="stat-headings stat-eng">
-		              <i class="fa-sharp fa-solid fa-fire fa-lg"></i>
-		              250 kcal
-		            </div>
-		            <div class="stat-headings stat-prot">
-		              <i class="fa-sharp fa-solid fa-leaf fa-lg"></i>
-		              25 g
-		            </div>
-		            <div class="stat-headings stat-carb">
-		              <i class="fa-sharp fa-solid fa-plate-wheat fa-lg"></i>
-		              100 g
-		            </div>
-		        </div>      
-              </div>
-              <p>Chicken rice, with a touch of lemon zest</p>
-            </div>
-          </div>
- -->          
-          
+          <!-- JS will inject selected recipe tiles here -->
         </div>
 
       </section>
