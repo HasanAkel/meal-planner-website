@@ -5,6 +5,8 @@ public class Recipe {
     private int id;
     private String name;
     private int calories;
+    private int protein;     
+    private int carbs;       
     private String ingredients;
     private String imagePath;
 
@@ -14,24 +16,27 @@ public class Recipe {
     public Recipe() {
     }
 
-    // Non-default Constructor 
-    public Recipe(String name, int calories, String ingredients, String imagePath) {
+    // Non-default constructor 
+    public Recipe(String name, int calories, int protein, int carbs, String ingredients, String imagePath) {
         this.name = name;
         this.calories = calories;
+        this.protein = protein;
+        this.carbs = carbs;
         this.ingredients = ingredients;
         this.imagePath = imagePath;
     }
 
-
-    public Recipe(int id, String name, int calories, String ingredients, String imagePath) {
+    // Full constructor 
+    public Recipe(int id, String name, int calories, int protein, int carbs, String ingredients, String imagePath) {
         this.id = id;
         this.name = name;
         this.calories = calories;
+        this.protein = protein;
+        this.carbs = carbs;
         this.ingredients = ingredients;
         this.imagePath = imagePath;
     }
 
-    
     // ----- Getters & Setters -----
 
     public int getId() {
@@ -58,6 +63,22 @@ public class Recipe {
         this.calories = calories;
     }
 
+    public int getProtein() {
+        return protein;
+    }
+
+    public void setProtein(int protein) {
+        this.protein = protein;
+    }
+
+    public int getCarbs() {
+        return carbs;
+    }
+
+    public void setCarbs(int carbs) {
+        this.carbs = carbs;
+    }
+
     public String getIngredients() {
         return ingredients;
     }
@@ -74,4 +95,3 @@ public class Recipe {
         this.imagePath = imagePath;
     }
 }
-

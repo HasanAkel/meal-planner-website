@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-
 @WebServlet("/recipes")
 public class RecipeServlet extends HttpServlet {
 
@@ -18,7 +17,7 @@ public class RecipeServlet extends HttpServlet {
 
     private RecipeDao recipeDao = new RecipeDao();
 
-    // CREATE (form submission)
+    // ============= CREATE (POST) =============
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,41 +26,51 @@ public class RecipeServlet extends HttpServlet {
 
         String name = request.getParameter("name");
         String caloriesStr = request.getParameter("calories");
+        String proteinStr = request.getParameter("protein");
+        String carbsStr = request.getParameter("carbs");
         String ingredients = request.getParameter("ingredients");
-        String imagePath = request.getParameter("image"); // for now just the filename/text
-        
+        String imagePath = request.getParameter("image"); // filename only
+
+        // Debug log
         System.out.println("---- Incoming POST /recipes ----");
         System.out.println("name = " + name);
-        System.out.println("caloriesStr = " + caloriesStr);
+        System.out.println("calories = " + caloriesStr);
+        System.out.println("protein = " + proteinStr);
+        System.out.println("carbs = " + carbsStr);
         System.out.println("ingredients = " + ingredients);
         System.out.println("imagePath = " + imagePath);
 
-        int calories = 0;
-        try {
-            if (caloriesStr != null && !caloriesStr.isEmpty()) {
-                calories = Integer.parseInt(caloriesStr);
-            }
-        } catch (NumberFormatException e) {
-            // keep calories = 0 if parsing fails
-        }
+        // Convert numbers safely
+        int calories = parseInt(caloriesStr);
+        int protein = parseInt(proteinStr);
+        int carbs = parseInt(carbsStr);
 
-        Recipe recipe = new Recipe(name, calories, ingredients, imagePath);
+        // Create Recipe object
+        Recipe recipe = new Recipe(name, calories, protein, carbs, ingredients, imagePath);
 
         try {
             recipeDao.addRecipe(recipe);
-            // Because we are using fetch() and handling reload in JS,
-            // just return a simple 200 OK with a small message.
+
             response.setContentType("text/plain");
             response.getWriter().write("OK");
+
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
         }
-        
-        
     }
 
-    // READ (return JSON list for JS)
+    // Helper to parse numbers
+    private int parseInt(String s) {
+        try {
+            if (s != null && !s.isEmpty()) {
+                return Integer.parseInt(s);
+            }
+        } catch (Exception ignored) {}
+        return 0;
+    }
+
+    // ============= READ (GET) =============
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,6 +79,7 @@ public class RecipeServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
+
             List<Recipe> recipes = recipeDao.getAllRecipes();
 
             StringBuilder json = new StringBuilder();
@@ -77,10 +87,13 @@ public class RecipeServlet extends HttpServlet {
 
             for (int i = 0; i < recipes.size(); i++) {
                 Recipe r = recipes.get(i);
+
                 json.append("{");
                 json.append("\"id\":").append(r.getId()).append(",");
                 json.append("\"name\":\"").append(escapeJson(r.getName())).append("\",");
                 json.append("\"calories\":").append(r.getCalories()).append(",");
+                json.append("\"protein\":").append(r.getProtein()).append(",");
+                json.append("\"carbs\":").append(r.getCarbs()).append(",");
                 json.append("\"ingredients\":\"").append(escapeJson(r.getIngredients())).append("\",");
                 json.append("\"imagePath\":\"").append(escapeJson(r.getImagePath())).append("\"");
                 json.append("}");
@@ -92,17 +105,54 @@ public class RecipeServlet extends HttpServlet {
 
             json.append("]");
             out.print(json.toString());
+
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
         }
     }
 
-    // Simple JSON string escaper (handles quotes and backslashes)
+    // ============= DELETE (DELETE) =============
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String idParam = request.getParameter("id");
+        if (idParam == null || idParam.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing id parameter");
+            return;
+        }
+
+        int id;
+        try {
+            id = Integer.parseInt(idParam);
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid id");
+            return;
+        }
+
+        System.out.println("---- Incoming DELETE /recipes?id=" + id + " ----");
+
+        try {
+            boolean deleted = recipeDao.deleteRecipe(id);
+
+            if (deleted) {
+                // No content, delete successful
+                response.setStatus(HttpServletResponse.SC_NO_CONTENT); // 204
+            } else {
+                // No row with that id
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Recipe not found");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
+        }
+    }
+
+    // Escape JSON safely
     private String escapeJson(String s) {
         if (s == null) return "";
-        return s.replace("\\", "\\\\")
-                .replace("\"", "\\\"");
+        return s.replace("\\", "\\\\").replace("\"", "\\\"");
     }
 }
-
