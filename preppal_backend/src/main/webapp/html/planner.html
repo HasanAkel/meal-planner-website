@@ -3,23 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <script src="https://kit.fontawesome.com/a12050c6e4.js" crossorigin="anonymous"></script> 
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
     <!-- Favicon -->
-    <link rel="icon" href="/preppal_backend/imgs/myfavicon.png" type="image/x-icon" />
+    <link rel="icon" href="../imgs/myfavicon.png" type="image/x-icon" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
     <title>Planner</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/preppal_backend/css/global.css">
-    <link rel="stylesheet" href="/preppal_backend/css/planner.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/planner.css">
   </head>
 
   <body>
     <header>
       <a href="index.html" id="logo">
-        <img src="/preppal_backend/imgs/logo.png" alt="Meal Planner Logo">
+        <img src="../imgs/logo.png" alt="Meal Planner Logo">
         <span>PrepPal</span>
       </a>
       <nav>
@@ -32,7 +34,8 @@
     </header>
 
     <main id="mainContainer">
-      <section class="plannerCard">
+      <!-- header card -->
+      <section class="plannerCard card-panel">
         <div>
           <h1>Your Planner</h1>
           <p class="recipes-sub">Plan your week at a glance.</p>
@@ -51,7 +54,7 @@
       </section>
 
       <!-- Calendar grid -->
-      <section class="calenderSection" id="calendar">
+      <section class="calenderSection card-panel" id="calendar">
 
         <div class="calender-item-container" data-day="Sunday">
           <p>Sunday</p>
@@ -67,7 +70,7 @@
             </div>
           </div>
           <div class="image-container glass-card">
-            <img src="/preppal_backend/imgs/dropdownblack.png" alt="Choose recipe"/>
+            <img src="../imgs/dropdownblack.png" alt="Choose recipe"/>
           </div>
         </div>
 
@@ -84,7 +87,7 @@
             </div>
           </div>
           <div class="image-container glass-card">
-            <img src="/preppal_backend/imgs/dropdownblack.png" alt="Choose recipe"/>
+            <img src="../imgs/dropdownblack.png" alt="Choose recipe"/>
           </div>
         </div>
 
@@ -101,7 +104,7 @@
             </div>
           </div>
           <div class="image-container glass-card">
-            <img src="/preppal_backend/imgs/dropdownblack.png" alt="Choose recipe"/>
+            <img src="../imgs/dropdownblack.png" alt="Choose recipe"/>
           </div>
         </div>
 
@@ -118,7 +121,7 @@
             </div>
           </div>
           <div class="image-container glass-card">
-            <img src="/preppal_backend/imgs/dropdownblack.png" alt="Choose recipe"/>
+            <img src="../imgs/dropdownblack.png" alt="Choose recipe"/>
           </div>
         </div>
 
@@ -135,7 +138,7 @@
             </div>
           </div>
           <div class="image-container glass-card">
-            <img src="/preppal_backend/imgs/dropdownblack.png" alt="Choose recipe"/>
+            <img src="../imgs/dropdownblack.png" alt="Choose recipe"/>
           </div>
         </div>
 
@@ -152,7 +155,7 @@
             </div>
           </div>
           <div class="image-container glass-card">
-            <img src="/preppal_backend/imgs/dropdownblack.png" alt="Choose recipe"/>
+            <img src="../imgs/dropdownblack.png" alt="Choose recipe"/>
           </div>
         </div>
 
@@ -169,13 +172,13 @@
             </div>
           </div>
           <div class="image-container glass-card">
-            <img src="/preppal_backend/imgs/dropdownblack.png" alt="Choose recipe"/>
+            <img src="../imgs/dropdownblack.png" alt="Choose recipe"/>
           </div>
         </div>
       </section>
 
       <!-- Weekly totals -->
-      <section class="week-summary" id="weekSummary">
+      <section class="week-summary card-panel" id="weekSummary">
         <div class="week-summary-header">
           <div class="summary-header-info">
             <h2>Weekly Summary</h2>
@@ -186,53 +189,17 @@
               <span class="tag carbs" id="totalCarbs">0 g carbs</span>
             </div>
           </div>
-          <div class="stat-grid">
-            <div class="stat-headings">
-              <i class="fa-sharp fa-solid fa-fire fa-lg"></i>
-              Energy
-            </div>
-            <div class="stat-headings">
-              <i class="fa-sharp fa-solid fa-leaf fa-lg"></i>
-              Protein
-            </div>
-            <div class="stat-headings">
-              <i class="fa-sharp fa-solid fa-plate-wheat fa-lg"></i>
-              Carbs
-            </div>
-          </div>
         </div>
 
         <div class="week-summary-selected">
-          <div class="selected-info">
-            <div class="img-container">
-              <img class="selected-img" src="/preppal_backend/imgs/chicken_veg.jpg" alt=""/>
-            </div>
-            <div class="information-selected">
-              <p> - Chicken riice, with a touch of lemon zest</p>
-            </div>
-          </div>
-          <div class="stat-grid">
-            <div>35 kcal</div>
-            <div>335 g</div>
-            <div>395 g</div>
-          </div>
+          <!-- JS will inject selected recipe tiles here -->
         </div>
 
-        <div class="total">
-          <div class="total-info">
-            <p>Total</p>
-          </div>
-          <div class="stat-grid">
-            <div>300 kcal</div>
-            <div>35 g</div>
-            <div>95 g</div>
-          </div>
-        </div>
       </section>
     </main>
 
     <!-- JS -->
-    <script src="/preppal_backend/js/planner.js"></script>
-    <script src="/preppal_backend/js/navbar.js"></script>
+    <script src="../js/planner.js"></script>
+        <script src="/preppal_backend/js/navbar.js"></script>
   </body>
 </html>

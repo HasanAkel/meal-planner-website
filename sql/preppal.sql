@@ -16,9 +16,6 @@ CREATE TABLE recipes (
     image_path VARCHAR(255)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Insert the initial data
-INSERT INTO `recipes` VALUES (1,'chicken',300,'i dont know','chicken_veg.jpg');
-
 -- 1. Create the Users table to store registration info
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -49,4 +46,4 @@ ADD CONSTRAINT `fk_recipes_users`
   ON UPDATE CASCADE;
   
   
-  SELECT * FROM recipes
+  SELECT * FROM users
