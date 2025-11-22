@@ -198,6 +198,58 @@
   margin: 0.5rem 0;
 }
 
+/* --- Delete button for saved recipes (shows on hover) --- */
+/* This only affects cards inside the Saved Recipes section (grid) */
+
+/* Make saved recipe cards positionable for absolute button */
+#saved-recipes-grid .glass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Delete button for saved recipes (shows on hover) --- */
+
+/* Make saved recipe cards positionable for the absolute button */
+#saved-recipes-grid .glass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* targeted delete button styles */
+#saved-recipes-grid .glass-card button.delete-recipe-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.75rem;
+
+  border-radius: 999px;
+  border: none !important;
+
+  background: rgba(248, 113, 113, 0.98) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+
+/* Show when the card is hovered */
+#saved-recipes-grid .glass-card:hover button.delete-recipe-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-1px);
+}
+
+/* Hover effect on the button itself */
+#saved-recipes-grid .glass-card button.delete-recipe-btn:hover {
+  background: rgba(239, 68, 68, 1) !important;
+  transform: translateY(-2px);
+}
+
 
 
 @media (max-width: 900px) {
@@ -206,5 +258,3 @@
 @media (max-width: 580px) {
   .samples-grid { grid-template-columns: 1fr; }
 }
-
-

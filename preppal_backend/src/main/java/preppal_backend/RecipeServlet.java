@@ -17,7 +17,7 @@ public class RecipeServlet extends HttpServlet {
 
     private RecipeDao recipeDao = new RecipeDao();
 
-
+    // ============= CREATE (POST) =============
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -60,7 +60,7 @@ public class RecipeServlet extends HttpServlet {
         }
     }
 
-    // Helper to parse numbers safely
+    // Helper to parse numbers
     private int parseInt(String s) {
         try {
             if (s != null && !s.isEmpty()) {
@@ -70,7 +70,7 @@ public class RecipeServlet extends HttpServlet {
         return 0;
     }
 
-
+    // ============= READ (GET) =============
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -105,6 +105,44 @@ public class RecipeServlet extends HttpServlet {
 
             json.append("]");
             out.print(json.toString());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error");
+        }
+    }
+
+    // ============= DELETE (DELETE) =============
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String idParam = request.getParameter("id");
+        if (idParam == null || idParam.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing id parameter");
+            return;
+        }
+
+        int id;
+        try {
+            id = Integer.parseInt(idParam);
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid id");
+            return;
+        }
+
+        System.out.println("---- Incoming DELETE /recipes?id=" + id + " ----");
+
+        try {
+            boolean deleted = recipeDao.deleteRecipe(id);
+
+            if (deleted) {
+                // No content, delete successful
+                response.setStatus(HttpServletResponse.SC_NO_CONTENT); // 204
+            } else {
+                // No row with that id
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Recipe not found");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

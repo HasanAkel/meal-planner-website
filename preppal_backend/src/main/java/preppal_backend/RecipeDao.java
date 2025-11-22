@@ -17,6 +17,7 @@ public class RecipeDao {
     private static final String PASSWORD = ""; // <– put your real password
 
 
+    // Load driver once when class loads
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -30,7 +31,7 @@ public class RecipeDao {
     }
 
 
-    // INSERT new recipe (C in CRUD)
+    // ============= CREATE =============
     public void addRecipe(Recipe recipe) throws SQLException {
 
         String sql = "INSERT INTO recipes (name, calories, protein, carbs, ingredients, image_path) "
@@ -51,7 +52,7 @@ public class RecipeDao {
     }
 
 
-    // SELECT all recipes (R in CRUD)
+    // ============= READ =============
     public List<Recipe> getAllRecipes() throws SQLException {
         List<Recipe> list = new ArrayList<>();
 
@@ -77,5 +78,20 @@ public class RecipeDao {
         }
 
         return list;
+    }
+
+
+    // ============= DELETE =============
+    public boolean deleteRecipe(int id) throws SQLException {
+        String sql = "DELETE FROM recipes WHERE id = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            int rows = ps.executeUpdate();
+            return rows > 0; // true if a row was deleted
+        }
     }
 }
