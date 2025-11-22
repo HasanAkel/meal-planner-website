@@ -8,8 +8,11 @@
         <link rel="icon" href="/preppal_backend/imgs/myfavicon.png" type="image/x-icon">
 
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-        <title>Recipes</title>
+        <title>Sign Up | PrepPal</title>
 
+        <!-- Font Awesome for Icons -->
+        <script src="https://kit.fontawesome.com/a12050c6e4.js" crossorigin="anonymous"></script> 
+        
         <!-- CSS -->
         <link rel="stylesheet" href="/preppal_backend/css/global.css">
         <link rel="stylesheet" href="/preppal_backend/css/registration.css">
@@ -31,30 +34,149 @@
         </header>
 
         <main>
-            <div class="ai-registration-container" id="ai-registration-container">
+            <div class="registration-container">
+                <h1>Create Your PrepPal Account</h1>
+                
+                <!-- STEP: 0 - Mode Selection (Visible initially) -->
+                <div id="step-0-mode" class="reg-step">
+                    <p class="step-intro">Choose how you would like to set up your profile.</p>
+                    <div class="mode-cards">
+                        <!-- Manual Registration Card -->
+                        <button class="mode-card" id="manual-reg-btn">
+                            <i class="fas fa-edit fa-3x icon-main"></i>
+                            <h3>Manual Registration & Data Input</h3>
+                            <p class="text-sm">Enter your details through guided steps.</p>
+                        </button>
 
-                <div id="ai-welcome-page">
-                    <h2>Welcome to PrepPal!</h2>
-                    <p>Let's get started by setting up your personalized meal plan. 
-                       Our AI assistant will guide you through a few questions to tailor 
-                       the experience just for you.</p>
-                    <button id="start-ai-btn" class="btn">Start AI Setup</button>
+                        <!-- AI Registration Card -->
+                        <button class="mode-card" id="ai-reg-btn">
+                            <i class="fas fa-microphone fa-3x icon-main"></i>
+                            <h3>AI Voicechat Registration <span class="badge">BETA</span></h3>
+                            <p class="text-sm">Speak your profile details to our AI Assistant.</p>
+                        </button>
+                    </div>
+                    <div class="login-prompt" style="margin-top: 20px;">
+    <p>Already have an account? <a href="#" id="go-to-login-btn" style="color: #059669; font-weight: bold;">Log In Here</a></p>
+</div>
+                </div>
+				
+<div id="step-login" class="reg-step hidden">
+    <h2 class="step-title">Welcome Back!</h2>
+    <p class="step-intro">Please enter your credentials to login.</p>
+
+    <form class="step-form" id="login-form">
+        <div class="form-row">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" required placeholder="Enter your username">
+        </div>
+        
+        <div class="form-row">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required placeholder="Enter your password">
+        </div>
+        
+        <div class="nav-buttons">
+            <button type="button" class="btn btn-secondary" onclick="showStep('0')"><i class="fas fa-arrow-left"></i> Sign Up</button>
+            <button type="submit" class="btn btn-success">Log In</button>
+        </div>
+    </form>
+    
+    <div id="login-error-div" style="color: #dc2626; margin-top: 10px; display: none;"></div>
+</div>
+                <!-- STEP 1: Bio Data Input (Hidden initially) -->
+                <div id="step-1-bio" class="reg-step hidden">
+                    <h2 class="step-title">1. Your Body Data</h2>
+                    <p class="step-intro">We need a few basics to calculate your daily requirements.</p>
+
+                    <form class="step-form">
+                        <div class="form-row">
+                            <label for="reg-age">Age (Years)</label>
+                            <input type="number" id="reg-age" placeholder="25" min="15" max="100" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="reg-height">Height (<span id="height-unit">cm</span>)</label>
+                            <input type="range" id="reg-height" min="140" max="210" value="175" step="1" required>
+                            <span class="range-value" id="height-value">175 cm</span>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="reg-weight">Weight (<span id="weight-unit">kg</span>)</label>
+                            <input type="range" id="reg-weight" min="40" max="150" value="70" step="0.5" required>
+                            <span class="range-value" id="weight-value">70 kg</span>
+                        </div>
+
+                        <div class="nav-buttons">
+                            <button type="button" class="btn btn-secondary hidden" data-action="back" data-target-step="0">Back</button>
+                            <button type="button" class="btn btn-primary" data-action="next" data-target-step="2">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- STEP 2: Goals Selection (Hidden initially) -->
+                <div id="step-2-goals" class="reg-step hidden">
+                    <h2 class="step-title">2. Choose Your Goal</h2>
+                    <p class="step-intro">What do you want to achieve with PrepPal?</p>
+
+                    <div class="goal-selection-grid">
+                        <button type="button" class="goal-card" data-goal="weight-loss">
+                            <i class="fas fa-minus-circle fa-2x"></i>
+                            <h4>Weight Loss</h4>
+                            <p>Create a calorie deficit to safely lose weight.</p>
+                        </button>
+                        <button type="button" class="goal-card" data-goal="maintain">
+                            <i class="fas fa-balance-scale fa-2x"></i>
+                            <h4>Maintain Weight</h4>
+                            <p>Eat healthy and keep your current body composition.</p>
+                        </button>
+                        <button type="button" class="goal-card" data-goal="muscle-gain">
+                            <i class="fas fa-dumbbell fa-2x"></i>
+                            <h4>Muscle Gain</h4>
+                            <p>A high-protein plan to support muscle growth.</p>
+                        </button>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button type="button" class="btn btn-secondary" data-action="back" data-target-step="1"><i class="fas fa-arrow-left"></i> Back</button>
+						<button type="button" class="btn btn-primary" id="goal-next-btn" data-action="next" data-target-step="3" disabled>Final Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
 
-                <div id="mode-selection" style="display:none;">
-                    <h3 class="mode-heading">Choose your preferred interaction mode</h3>
+                <!-- STEP 3: Credentials/Signup (Hidden initially) -->
+                <div id="step-3-credentials" class="reg-step hidden">
+                    <h2 class="step-title">3. Finalize Account</h2>
+                    <p class="step-intro">One last step to create your PrepPal login.</p>
 
-                    <div class="mode-cards">
-                        <div class="mode-card" id="chat-mode-btn">
-                            <img src="/preppal_backend/imgs/chat-icon.png" alt="Chat Icon">
-                            <span>Chat with AI</span>
+                    <form class="step-form">
+                        <div class="form-row">
+                            <label for="reg-email">Email Address</label>
+                            <input type="email" id="reg-email" placeholder="you@example.com" required>
                         </div>
 
-                        <div class="mode-card" id="voice-mode-btn">
-                            <img src="/preppal_backend/imgs/voice-chat.png" alt="Voice Icon">
-                            <span>Talk to AI (Voice)</span>
+                        <div class="form-row">
+                            <label for="reg-username">Username</label>
+                            <input type="text" id="reg-username" placeholder="PrepPalUser" required minlength="4">
                         </div>
-                    </div>
+
+                        <div class="form-row">
+                            <label for="reg-password">Password</label>
+                            <input type="password" id="reg-password" required minlength="8">
+                        </div>
+                        
+                        <div class="nav-buttons">
+                            <button type="button" class="btn btn-secondary" data-action="back" data-target-step="2"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="submit" class="btn btn-success">Sign Up Now!</button>
+                        </div>
+                    </form>
+                    
+                	<div id="error-div"></div>
+                </div>
+                
+                <!-- AI Registration Message (Hidden initially) -->
+                <div id="ai-message" class="reg-step hidden">
+                    <h2 class="step-title">AI Registration (BETA)</h2>
+					<p class="step-intro">Thank you for your interest! The AI Voicechat feature is currently in beta testing. Please check back soon or proceed with <strong>Manual Registration</strong>.</p>
+                    <button id="final-submit-btn"type="button" class="btn btn-secondary" data-action="back" data-target-step="0"><i class="fas fa-arrow-left"></i> Back to Start</button>
                 </div>
 
             </div>
@@ -62,5 +184,6 @@
 
         <!-- JS -->
         <script src="/preppal_backend/js/registration.js"></script>
+        <script src="/preppal_backend/js/navbar.js"></script>
     </body>
 </html>
