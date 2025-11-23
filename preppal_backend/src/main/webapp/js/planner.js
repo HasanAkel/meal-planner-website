@@ -363,5 +363,19 @@ function getStartOfWeek() {
   return new Date(today.setDate(diff));
 }
 
+/* Print only selected recipes in week summary */
+document.getElementById("printBtn").addEventListener("click", () => {
+  const selectedRecipes = document.querySelectorAll(".week-summary-selected .selected-info");
+
+  if (!selectedRecipes.length) {
+    alert("No recipes selected to print.");
+    return;
+  }
+
+  // CSS @media print already hides everything except #weekSummary,
+  // which includes these selected recipes.
+  window.print();
+});
+
 /* get the data as soon as DOM is loaded*/
 window.addEventListener("DOMContentLoaded", loadRecipes);
