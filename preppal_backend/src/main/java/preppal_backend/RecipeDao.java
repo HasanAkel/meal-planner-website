@@ -11,89 +11,126 @@ import java.util.List;
 
 public class RecipeDao {
 
-	// JDBC connection info
-	private static final String URL = "jdbc:mysql://localhost:3306/preppal?useSSL=false&serverTimezone=UTC";
-	private static final String USER = "root";
-	private static final String PASSWORD = ""; // <– put your real password
+    private static final String URL = "jdbc:mysql://localhost:3306/preppal?useSSL=false&serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
 
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-	// Load driver once when class loads
-	static {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+    private Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
 
-	private Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(URL, USER, PASSWORD);
-	}
+    
+    
+    // ============= CREATE =============
+    public void addRecipe(Recipe recipe) throws SQLException {
 
+        String sql = "INSERT INTO recipes (name, calories, protein, carbs, fat, ingredients, image_path, user_id) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-	// ============= CREATE =============
-	public void addRecipe(Recipe recipe) throws SQLException {
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-		String sql = "INSERT INTO recipes (name, calories, protein, carbs, fat, ingredients, image_path) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            ps.setString(1, recipe.getName());
+            ps.setInt(2, recipe.getCalories());
+            ps.setInt(3, recipe.getProtein());
+            ps.setInt(4, recipe.getCarbs());
+            ps.setInt(5, recipe.getFat());
+            ps.setString(6, recipe.getIngredients());
+            ps.setString(7, recipe.getImagePath());
 
-		try (Connection conn = getConnection();
-				PreparedStatement ps = conn.prepareStatement(sql)) {
+            if (recipe.getUserId() > 0) {
+                ps.setInt(8, recipe.getUserId());
+            } else {
+                ps.setNull(8, java.sql.Types.INTEGER);
+            }
 
-			ps.setString(1, recipe.getName());
-			ps.setInt(2, recipe.getCalories());
-			ps.setInt(3, recipe.getProtein());
-			ps.setInt(4, recipe.getCarbs());
-			ps.setInt(5, recipe.getFat());
-			ps.setString(6, recipe.getIngredients());
-			ps.setString(7, recipe.getImagePath());
+            ps.executeUpdate();
+        }
+    }
 
-			ps.executeUpdate();
-		}
-	}
+    
+    
+    // ============= READ =============
+    public List<Recipe> getAllRecipes() throws SQLException {
+        List<Recipe> list = new ArrayList<>();
 
+        String sql = "SELECT id, name, calories, protein, carbs, fat, ingredients, image_path, user_id FROM recipes";
 
-	// ============= READ =============
-	public List<Recipe> getAllRecipes() throws SQLException {
-		List<Recipe> list = new ArrayList<>();
+        try (Connection conn = getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
 
-		String sql = "SELECT id, name, calories, protein, carbs, fat, ingredients, image_path FROM recipes";
+            while (rs.next()) {
+                Recipe r = new Recipe();
+                r.setId(rs.getInt("id"));
+                r.setName(rs.getString("name"));
+                r.setCalories(rs.getInt("calories"));
+                r.setProtein(rs.getInt("protein"));
+                r.setCarbs(rs.getInt("carbs"));
+                r.setFat(rs.getInt("fat"));
+                r.setIngredients(rs.getString("ingredients"));
+                r.setImagePath(rs.getString("image_path"));
+                r.setUserId(rs.getInt("user_id"));
+                list.add(r);
+            }
+        }
 
-		try (Connection conn = getConnection();
-				Statement st = conn.createStatement();
-				ResultSet rs = st.executeQuery(sql)) {
+        return list;
+    }
 
-			while (rs.next()) {
+    
+    // ============= READ by user =============
+    public List<Recipe> getRecipesByUser(int userId) throws SQLException {
+        List<Recipe> list = new ArrayList<>();
 
-				Recipe r = new Recipe();
-				r.setId(rs.getInt("id"));
-				r.setName(rs.getString("name"));
-				r.setCalories(rs.getInt("calories"));
-				r.setProtein(rs.getInt("protein"));
-				r.setCarbs(rs.getInt("carbs"));
-				r.setFat(rs.getInt("fat"));
-				r.setIngredients(rs.getString("ingredients"));
-				r.setImagePath(rs.getString("image_path"));
+        String sql = "SELECT id, name, calories, protein, carbs, fat, ingredients, image_path, user_id "
+                   + "FROM recipes WHERE user_id = ?";
 
-				list.add(r);
-			}
-		}
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-		return list;
-	}
+            ps.setInt(1, userId);
 
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Recipe r = new Recipe();
+                    r.setId(rs.getInt("id"));
+                    r.setName(rs.getString("name"));
+                    r.setCalories(rs.getInt("calories"));
+                    r.setProtein(rs.getInt("protein"));
+                    r.setCarbs(rs.getInt("carbs"));
+                    r.setFat(rs.getInt("fat"));
+                    r.setIngredients(rs.getString("ingredients"));
+                    r.setImagePath(rs.getString("image_path"));
+                    r.setUserId(rs.getInt("user_id"));
+                    list.add(r);
+                }
+            }
+        }
 
-	// ============= DELETE =============
-	public boolean deleteRecipe(int id) throws SQLException {
-		String sql = "DELETE FROM recipes WHERE id = ?";
+        return list;
+    }
 
-		try (Connection conn = getConnection();
-				PreparedStatement ps = conn.prepareStatement(sql)) {
+    
+    // ============= DELETE =============
+    public boolean deleteRecipe(int id) throws SQLException {
+        String sql = "DELETE FROM recipes WHERE id = ?";
 
-			ps.setInt(1, id);
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-			int rows = ps.executeUpdate();
-			return rows > 0; // true if a row was deleted
-		}
-	}
+            ps.setInt(1, id);
+
+            int rows = ps.executeUpdate();
+            return rows > 0;
+        }
+    }
 }

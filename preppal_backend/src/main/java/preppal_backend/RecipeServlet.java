@@ -5,9 +5,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/recipes")
@@ -24,6 +27,15 @@ public class RecipeServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
+        // Get current user
+        HttpSession session = request.getSession(false);
+        User user = (session != null) ? (User) session.getAttribute("user") : null;
+
+        if (user == null) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Please log in to add recipes");
+            return;
+        }
+
         String name = request.getParameter("name");
         String caloriesStr = request.getParameter("calories");
         String proteinStr = request.getParameter("protein");
@@ -32,15 +44,13 @@ public class RecipeServlet extends HttpServlet {
         String ingredients = request.getParameter("ingredients");
         String imagePath = request.getParameter("image"); // filename only
 
-
-        // Convert numbers safely
         int calories = parseInt(caloriesStr);
         int protein = parseInt(proteinStr);
         int carbs = parseInt(carbsStr);
         int fat = parseInt(fatStr);
 
-        // Create Recipe object
         Recipe recipe = new Recipe(name, calories, protein, carbs, fat, ingredients, imagePath);
+        recipe.setUserId(user.getId());  // ✅ link to owner
 
         try {
             recipeDao.addRecipe(recipe);
@@ -54,7 +64,6 @@ public class RecipeServlet extends HttpServlet {
         }
     }
 
-    // Helper to parse numbers
     private int parseInt(String s) {
         try {
             if (s != null && !s.isEmpty()) {
@@ -72,9 +81,20 @@ public class RecipeServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
+        HttpSession session = request.getSession(false);
+        User user = (session != null) ? (User) session.getAttribute("user") : null;
+
+        List<Recipe> recipes = new ArrayList<>();
+
         try (PrintWriter out = response.getWriter()) {
 
-            List<Recipe> recipes = recipeDao.getAllRecipes();
+            if (user != null) {
+                // Only this user's recipes
+                recipes = recipeDao.getRecipesByUser(user.getId());
+            } else {
+                // Guest: no personal recipes 
+                recipes = new ArrayList<>();
+            }
 
             StringBuilder json = new StringBuilder();
             json.append("[");
@@ -132,10 +152,8 @@ public class RecipeServlet extends HttpServlet {
             boolean deleted = recipeDao.deleteRecipe(id);
 
             if (deleted) {
-                // No content, delete successful
-                response.setStatus(HttpServletResponse.SC_NO_CONTENT); // 204
+                response.setStatus(HttpServletResponse.SC_NO_CONTENT); 
             } else {
-                // No row with that id
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Recipe not found");
             }
 
@@ -145,7 +163,6 @@ public class RecipeServlet extends HttpServlet {
         }
     }
 
-    // Escape JSON safely
     private String escapeJson(String s) {
         if (s == null) return "";
         return s.replace("\\", "\\\\").replace("\"", "\\\"");
