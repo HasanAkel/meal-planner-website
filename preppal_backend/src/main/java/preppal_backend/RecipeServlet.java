@@ -28,25 +28,19 @@ public class RecipeServlet extends HttpServlet {
         String caloriesStr = request.getParameter("calories");
         String proteinStr = request.getParameter("protein");
         String carbsStr = request.getParameter("carbs");
+        String fatStr = request.getParameter("fat");
         String ingredients = request.getParameter("ingredients");
         String imagePath = request.getParameter("image"); // filename only
 
-        // Debug log
-        System.out.println("---- Incoming POST /recipes ----");
-        System.out.println("name = " + name);
-        System.out.println("calories = " + caloriesStr);
-        System.out.println("protein = " + proteinStr);
-        System.out.println("carbs = " + carbsStr);
-        System.out.println("ingredients = " + ingredients);
-        System.out.println("imagePath = " + imagePath);
 
         // Convert numbers safely
         int calories = parseInt(caloriesStr);
         int protein = parseInt(proteinStr);
         int carbs = parseInt(carbsStr);
+        int fat = parseInt(fatStr);
 
         // Create Recipe object
-        Recipe recipe = new Recipe(name, calories, protein, carbs, ingredients, imagePath);
+        Recipe recipe = new Recipe(name, calories, protein, carbs, fat, ingredients, imagePath);
 
         try {
             recipeDao.addRecipe(recipe);
@@ -94,6 +88,7 @@ public class RecipeServlet extends HttpServlet {
                 json.append("\"calories\":").append(r.getCalories()).append(",");
                 json.append("\"protein\":").append(r.getProtein()).append(",");
                 json.append("\"carbs\":").append(r.getCarbs()).append(",");
+                json.append("\"fat\":").append(r.getFat()).append(",");
                 json.append("\"ingredients\":\"").append(escapeJson(r.getIngredients())).append("\",");
                 json.append("\"imagePath\":\"").append(escapeJson(r.getImagePath())).append("\"");
                 json.append("}");

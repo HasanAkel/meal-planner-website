@@ -1,134 +1,149 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Favicon -->
-        <link rel="icon" href="../imgs/myfavicon.png" type="image/x-icon"/>
+<!-- Favicon -->
+<link rel="icon" href="../imgs/myfavicon.png" type="image/x-icon" />
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
+	rel="stylesheet">
 
-        <title>Recipes</title>
+<title>Recipes</title>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="../css/global.css">
-        <link rel="stylesheet" href="../css/recipes.css">
-    </head>
+<!-- CSS -->
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/recipes.css">
+</head>
 
-    <body>
-        <header>
-            <a href="index.html" id="logo">
-                <img src="../imgs/logo.png" alt="Meal Planner Logo">
-                <span>PrepPal</span>
-            </a>
+<body>
+	<header>
+		<a href="index.html" id="logo"> <img src="../imgs/logo.png"
+			alt="Meal Planner Logo"> <span>PrepPal</span>
+		</a>
 
-            <nav>
-                <a href="index.html" class="nav-element">Home</a>
-                <a href="recipes.html" class="nav-element active">Recipes</a>
-                <a href="planner.html" class="nav-element">Planner</a>
-                <a href="tracker.html" class="nav-element">Tracker</a>
-                <a href="registration.html" class="nav-element">Sign-Up</a>
-            </nav>
-        </header>
+		<nav>
+			<a href="index.html" class="nav-element">Home</a> <a
+				href="recipes.html" class="nav-element active">Recipes</a> <a
+				href="planner.html" class="nav-element">Planner</a> <a
+				href="tracker.html" class="nav-element">Tracker</a> <a
+				href="registration.html" class="nav-element">Sign-Up</a>
+		</nav>
+	</header>
 
-        <main class="page-spacing"> 
+	<main class="page-spacing">
 
-            <!-- Page Title -->
-            <section class="recipes-title">
-                <h1>Your Recipes</h1>
-                <p class="recipes-sub">Search, add, and browse your saved meals.</p>
-            </section>
+		<!-- Page Title -->
+		<section class="recipes-title">
+			<h1>Your Recipes</h1>
+			<p class="recipes-sub">Search, add, and browse your saved meals.</p>
+		</section>
 
-            <!-- Search + Add Button -->
-            <div id="recipes-controls">
-                <section class="recipes-controls">
-                    <input id="recipe-search" type="search" placeholder="Search recipes"/>
-                    <button class="btn-secondary" type="button" id="add-recipe-btn">+ Add Recipe</button>
-                </section>
-            </div>
+		<!-- Search + Add Button -->
+		<div id="recipes-controls">
+			<section class="recipes-controls">
+				<input id="recipe-search" type="search" placeholder="Search recipes" />
+				<button class="btn-secondary" type="button" id="add-recipe-btn">+
+					Add Recipe</button>
+			</section>
+		</div>
 
-            <!-- Add Recipe Form -->
-            <form id="add-recipe-form" class="card hidden" action="preppal_backend/recipes" method="post">
+		<!-- Add Recipe Form -->
+		<form id="add-recipe-form" class="card hidden"
+			action="preppal_backend/recipes" method="post">
 
-    <div class="form-row">
-        <label for="recipe-name">Name</label>
-        <input id="recipe-name" name="name" type="text" placeholder="e.g., Grilled Chicken"/>
-    </div>
+			<div class="form-row">
+				<label for="recipe-name">Name</label> <input id="recipe-name"
+					name="name" type="text" placeholder="e.g., Grilled Chicken" />
+			</div>
 
-    <div class="form-row">
-        <label for="recipe-calories">Calories</label>
-        <input id="recipe-calories" name="calories" type="number" min="0" placeholder="e.g., 520"/>
-    </div>
+			<div class="form-row">
+				<label for="recipe-calories">Calories</label> <input
+					id="recipe-calories" name="calories" type="number" min="0"
+					placeholder="e.g., 520" />
+			</div>
 
-    <div class="form-row">
-        <label for="recipe-protein">Protein (g)</label>
-        <input id="recipe-protein" name="protein" type="number" min="0" placeholder="e.g., 35"/>
-    </div>
+			<div class="form-row">
+				<label for="recipe-protein">Protein (g)</label> <input
+					id="recipe-protein" name="protein" type="number" min="0"
+					placeholder="e.g., 35" />
+			</div>
 
-    <div class="form-row">
-        <label for="recipe-carbs">Carbs (g)</label>
-        <input id="recipe-carbs" name="carbs" type="number" min="0" placeholder="e.g., 40"/>
-    </div>
+			<div class="form-row">
+				<label for="recipe-carbs">Carbs (g)</label> <input id="recipe-carbs"
+					name="carbs" type="number" min="0" placeholder="e.g., 40" />
+			</div>
 
-    <div class="form-row">
-        <label for="recipe-ingredients">Ingredients</label>
-        <textarea id="recipe-ingredients" name="ingredients" rows="3" placeholder="e.g., chicken, lemon, garlic"></textarea>
-    </div>
+			<div class="form-row">
+				<label for="recipe-fat">Fat (g)</label> <input id="recipe-fat"
+					name="fat" type="number" min="0" placeholder="e.g., 15" />
+			</div>
 
-    <div class="form-row">
-        <label for="recipe-image">Image</label>
-        <input id="recipe-image" name="image" type="file" accept="image/*"/>
-    </div>
+			<div class="form-row">
+				<label for="recipe-ingredients">Ingredients</label>
+				<textarea id="recipe-ingredients" name="ingredients" rows="3"
+					placeholder="e.g., chicken, lemon, garlic"></textarea>
+			</div>
 
-    <div class="form-actions">
-        <button type="submit" class="btn">Save Recipe</button>
-        <button type="reset" class="btn-ghost" id="cancel-btn">Cancel</button>
-    </div>
-    
-</form>
+			<div class="form-row">
+				<label for="recipe-image">Image</label> <input id="recipe-image"
+					name="image" type="file" accept="image/*" />
+			</div>
+
+			<div class="form-actions">
+				<button type="submit" class="btn">Save Recipe</button>
+				<button type="reset" class="btn-ghost" id="cancel-btn">Cancel</button>
+			</div>
+
+		</form>
 
 
-            <!-- SAVED RECIPES (dynamic from DB) -->
-            <section id="saved-recipes-section" class="recipes-samples hidden">
-                <h2 class="samples-title">Saved Recipes</h2>
+		<!-- SAVED RECIPES (dynamic from DB) -->
+		<section id="saved-recipes-section" class="recipes-samples hidden">
+			<h2 class="samples-title">Saved Recipes</h2>
 
-                <div id="saved-recipes-grid" class="samples-grid">
-                    <!-- JS injects saved recipes here it will also inject the delete button -->
-                </div>
-            </section>
+			<div id="saved-recipes-grid" class="samples-grid">
+				<!-- JS injects saved recipes here it will also inject the delete button -->
+			</div>
+		</section>
 
-            <!-- EXAMPLE RECIPES (static) -->
-            <section class="recipes-samples">
-                <h2 class="samples-title">Example Recipes</h2>
+		<!-- EXAMPLE RECIPES (static) -->
+		<section class="recipes-samples">
+			<h2 class="samples-title">Example Recipes</h2>
 
-                <div class="samples-grid">
-                    <article class="glass-card">
-                        <h3>Chicken & Veg Bowl</h3>
-                        <img src="../imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl" class="recipe-img">
-                        <p class="meta">520 kcal • chicken, broccoli, carrots, rice</p>
-                    </article>
+			<div class="samples-grid">
+				<article class="glass-card">
+					<h3>Chicken & Veg Bowl</h3>
+					<img src="../imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl"
+						class="recipe-img">
+					<p class="meta">520 kcal • 35g protein • 40g carbs • 12g fat •
+						chicken, broccoli, carrots, rice</p>
+				</article>
 
-                    <article class="glass-card">
-                        <h3>Tuna Avocado Wrap</h3>
-                        <img src="../imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap" class="recipe-img">
-                        <p class="meta">430 kcal • tuna, avocado, tortilla, lettuce</p>
-                    </article>
+				<article class="glass-card">
+					<h3>Tuna Avocado Wrap</h3>
+					<img src="../imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap"
+						class="recipe-img">
+					<p class="meta">430 kcal • 25g protein • 35g carbs • 18g fat •
+						tuna, avocado, tortilla, lettuce</p>
+				</article>
 
-                    <article class="glass-card">
-                        <h3>Garlic Lemon Salmon</h3>
-                        <img src="../imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon" class="recipe-img">
-                        <p class="meta">510 kcal • salmon, lemon, garlic, asparagus</p>
-                    </article>
-                </div>
-            </section>
+				<article class="glass-card">
+					<h3>Garlic Lemon Salmon</h3>
+					<img src="../imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon"
+						class="recipe-img">
+					<p class="meta">510 kcal • 40g protein • 15g carbs • 22g fat •
+						salmon, lemon, garlic, asparagus</p>
+				</article>
+			</div>
+		</section>
+	</main>
 
-        </main>
-
-        <!-- JS -->
-        <script src="../js/recipes.js"></script>
-                <script src="/preppal_backend/js/navbar.js"></script>
-    </body>
+	<!-- JS -->
+	<script src="../js/recipes.js"></script>
+	<script src="../js/navbar.js"></script>
+</body>
 </html>
-      

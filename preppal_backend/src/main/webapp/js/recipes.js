@@ -26,6 +26,7 @@ addRecipeForm.addEventListener("submit", function (event) {
     const calories = document.getElementById("recipe-calories").value;
     const protein = document.getElementById("recipe-protein").value;
     const carbs = document.getElementById("recipe-carbs").value;
+	const fat = document.getElementById("recipe-fat").value;
     const ingredients = document.getElementById("recipe-ingredients").value;
 
     const imageInput = document.getElementById("recipe-image");
@@ -36,6 +37,7 @@ addRecipeForm.addEventListener("submit", function (event) {
     params.append("calories", calories);
     params.append("protein", protein);
     params.append("carbs", carbs);
+	params.append("fat", fat);
     params.append("ingredients", ingredients);
     params.append("image", imagePath);
 
@@ -77,7 +79,7 @@ function loadSavedRecipes() {
                 let imgHtml = "";
                 if (r.imagePath && r.imagePath.trim() !== "") {
                     imgHtml = `
-                        <img src="/preppal_backend/imgs/${r.imagePath}" 
+                        <img src="../imgs/${r.imagePath}" 
                              alt="${r.name}" 
                              class="recipe-img">
                     `;
@@ -89,13 +91,16 @@ function loadSavedRecipes() {
                 const carbsText = (r.carbs != null && r.carbs !== 0)
                     ? `${r.carbs} g carbs • `
                     : "";
+					const fatText = (r.fat != null && r.fat !== 0)
+					    ? `${r.fat} g fat • `
+					    : "";
 
                 card.innerHTML = `
                     <h3>${r.name}</h3>
                     ${imgHtml}
                     <p class="meta">
                         ${r.calories} kcal • 
-                        ${proteinText}${carbsText}${r.ingredients}
+                        ${proteinText}${carbsText}${fatText}${r.ingredients}
                     </p>
 
                     <button class="delete-recipe-btn" data-id="${r.id}">

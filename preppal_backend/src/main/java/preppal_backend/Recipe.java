@@ -7,6 +7,7 @@ public class Recipe {
     private int calories;
     private int protein;     
     private int carbs;       
+    private int fat;
     private String ingredients;
     private String imagePath;
 
@@ -17,17 +18,18 @@ public class Recipe {
     }
 
     // Non-default constructor 
-    public Recipe(String name, int calories, int protein, int carbs, String ingredients, String imagePath) {
+    public Recipe(String name, int calories, int protein, int carbs, int fat, String ingredients, String imagePath) {
         this.name = name;
         this.calories = calories;
         this.protein = protein;
         this.carbs = carbs;
+        this.fat = fat;
         this.ingredients = ingredients;
         this.imagePath = imagePath;
     }
 
     // Full constructor 
-    public Recipe(int id, String name, int calories, int protein, int carbs, String ingredients, String imagePath) {
+    public Recipe(int id, String name, int calories, int protein, int carbs, int fat, String ingredients, String imagePath) {
         this.id = id;
         this.name = name;
         this.calories = calories;
@@ -78,6 +80,8 @@ public class Recipe {
     public void setCarbs(int carbs) {
         this.carbs = carbs;
     }
+    public int getFat() { return fat; }
+    public void setFat(int fat) { this.fat = fat; }
 
     public String getIngredients() {
         return ingredients;
@@ -94,4 +98,5 @@ public class Recipe {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+    
 }
