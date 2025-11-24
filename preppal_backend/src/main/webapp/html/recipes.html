@@ -3,147 +3,280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/a12050c6e4.js" crossorigin="anonymous"></script>
 
-<!-- Favicon -->
-<link rel="icon" href="../imgs/myfavicon.png" type="image/x-icon" />
+  <!-- Favicon -->
+  <link rel="icon" href="../imgs/myfavicon.png" type="image/x-icon" />
 
-<!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
-	rel="stylesheet">
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet">
 
-<title>Recipes</title>
+  <title>Recipes</title>
 
-<!-- CSS -->
-<link rel="stylesheet" href="../css/global.css">
-<link rel="stylesheet" href="../css/recipes.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/recipes.css">
 </head>
 
 <body>
-	<header>
-		<a href="index.html" id="logo"> <img src="../imgs/logo.png"
-			alt="Meal Planner Logo"> <span>PrepPal</span>
-		</a>
+  <header>
+    <a href="index.html" id="logo">
+      <img src="../imgs/logo.png" alt="Meal Planner Logo">
+      <span>PrepPal</span>
+    </a>
 
-		<nav>
-			<a href="index.html" class="nav-element">Home</a> <a
-				href="recipes.html" class="nav-element active">Recipes</a> <a
-				href="planner.html" class="nav-element">Planner</a> <a
-				href="tracker.html" class="nav-element">Tracker</a> <a
-				href="registration.html" class="nav-element">Sign-Up</a>
-		</nav>
-	</header>
+    <nav>
+      <a href="index.html" class="nav-element">Home</a>
+      <a href="recipes.html" class="nav-element active">Recipes</a>
+      <a href="planner.html" class="nav-element">Planner</a>
+      <a href="tracker.html" class="nav-element">Tracker</a>
+      <a href="registration.html" class="nav-element">Sign-Up</a>
+    </nav>
+  </header>
 
-	<main class="page-spacing">
+  <main class="page-spacing">
 
-		<!-- Page Title -->
-		<section class="recipes-title">
-			<h1>Your Recipes</h1>
-			<p class="recipes-sub">Search, add, and browse your saved meals.</p>
-		</section>
+    <!-- Page Title -->
+    <section class="recipes-title">
+      <h1>Your Recipes</h1>
+      <p class="recipes-sub">Search, add, and browse your saved meals.</p>
+    </section>
 
-		<!-- Search + Add Button -->
-		<div id="recipes-controls">
-			<section class="recipes-controls">
-				<input id="recipe-search" type="search" placeholder="Search recipes" />
-				<button class="btn-secondary" type="button" id="add-recipe-btn">+
-					Add Recipe</button>
-			</section>
-		</div>
+    <!-- Search + Add Button -->
+    <div id="recipes-controls">
+      <section class="recipes-controls">
+        <input id="recipe-search" type="search" placeholder="Search recipes" />
+        <button class="btn-secondary" type="button" id="add-recipe-btn">
+          + Add Recipe
+        </button>
+      </section>
+    </div>
 
-		<!-- Add Recipe Form -->
-		<form id="add-recipe-form" class="card hidden"
-			action="preppal_backend/recipes" method="post">
+    <!-- Add Recipe Form -->
+    <form id="add-recipe-form" class="card hidden"
+      action="preppal_backend/recipes" method="post">
 
-			<div class="form-row">
-				<label for="recipe-name">Name</label> <input id="recipe-name"
-					name="name" type="text" placeholder="e.g., Grilled Chicken" />
-			</div>
+      <div class="form-row">
+        <label for="recipe-name">Name</label>
+        <input id="recipe-name" name="name" type="text" placeholder="e.g., Grilled Chicken" />
+      </div>
 
-			<div class="form-row">
-				<label for="recipe-calories">Calories</label> <input
-					id="recipe-calories" name="calories" type="number" min="0"
-					placeholder="e.g., 520" />
-			</div>
+      <div class="form-row">
+        <label for="recipe-calories">Calories</label>
+        <input id="recipe-calories" name="calories" type="number" min="0" placeholder="e.g., 520" />
+      </div>
 
-			<div class="form-row">
-				<label for="recipe-protein">Protein (g)</label> <input
-					id="recipe-protein" name="protein" type="number" min="0"
-					placeholder="e.g., 35" />
-			</div>
+      <div class="form-row">
+        <label for="recipe-protein">Protein (g)</label>
+        <input id="recipe-protein" name="protein" type="number" min="0" placeholder="e.g., 35" />
+      </div>
 
-			<div class="form-row">
-				<label for="recipe-carbs">Carbs (g)</label> <input id="recipe-carbs"
-					name="carbs" type="number" min="0" placeholder="e.g., 40" />
-			</div>
+      <div class="form-row">
+        <label for="recipe-carbs">Carbs (g)</label>
+        <input id="recipe-carbs" name="carbs" type="number" min="0" placeholder="e.g., 40" />
+      </div>
 
-			<div class="form-row">
-				<label for="recipe-fat">Fat (g)</label> <input id="recipe-fat"
-					name="fat" type="number" min="0" placeholder="e.g., 15" />
-			</div>
+      <div class="form-row">
+        <label for="recipe-fat">Fat (g)</label>
+        <input id="recipe-fat" name="fat" type="number" min="0" placeholder="e.g., 15" />
+      </div>
 
-			<div class="form-row">
-				<label for="recipe-ingredients">Ingredients</label>
-				<textarea id="recipe-ingredients" name="ingredients" rows="3"
-					placeholder="e.g., chicken, lemon, garlic"></textarea>
-			</div>
+      <div class="form-row">
+        <label for="recipe-ingredients">Ingredients</label>
+        <textarea id="recipe-ingredients" name="ingredients" rows="3"
+          placeholder="e.g., chicken, lemon, garlic"></textarea>
+      </div>
 
-			<div class="form-row">
-				<label for="recipe-image">Image</label> <input id="recipe-image"
-					name="image" type="file" accept="image/*" />
-			</div>
+      <div class="form-row">
+        <label for="recipe-image">Image</label>
+        <input id="recipe-image" name="image" type="file" accept="image/*" />
+      </div>
 
-			<div class="form-actions">
-				<button type="submit" class="btn">Save Recipe</button>
-				<button type="reset" class="btn-ghost" id="cancel-btn">Cancel</button>
-			</div>
-
-		</form>
+      <div class="form-actions">
+        <button type="submit" class="btn">Save Recipe</button>
+        <button type="reset" class="btn-ghost" id="cancel-btn">Cancel</button>
+      </div>
+    </form>
 
 
-		<!-- SAVED RECIPES (dynamic from DB) -->
-		<section id="saved-recipes-section" class="recipes-samples hidden">
-			<h2 class="samples-title">Saved Recipes</h2>
+    <!-- SAVED RECIPES (dynamic from DB) -->
+    <section id="saved-recipes-section" class="recipes-samples hidden">
+      <h2 class="samples-title">Saved Recipes</h2>
 
-			<div id="saved-recipes-grid" class="samples-grid">
-				<!-- JS injects saved recipes here it will also inject the delete button -->
-			</div>
-		</section>
+      <div id="saved-recipes-grid" class="samples-grid">
+        <!-- JS injects saved recipes here it will also inject the delete button -->
+      </div>
+    </section>
 
-		<!-- EXAMPLE RECIPES (static) -->
-		<section class="recipes-samples">
-			<h2 class="samples-title">Example Recipes</h2>
 
-			<div class="samples-grid">
-				<article class="glass-card">
-					<h3>Chicken & Veg Bowl</h3>
-					<img src="../imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl"
-						class="recipe-img">
-					<p class="meta">520 kcal • 35g protein • 40g carbs • 12g fat •
-						chicken, broccoli, carrots, rice</p>
-				</article>
 
-				<article class="glass-card">
-					<h3>Tuna Avocado Wrap</h3>
-					<img src="../imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap"
-						class="recipe-img">
-					<p class="meta">430 kcal • 25g protein • 35g carbs • 18g fat •
-						tuna, avocado, tortilla, lettuce</p>
-				</article>
+    <!-- EXAMPLE RECIPES (static) -->
+<section class="recipes-samples">
+  <h2 class="samples-title">Example Recipes</h2>
 
-				<article class="glass-card">
-					<h3>Garlic Lemon Salmon</h3>
-					<img src="../imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon"
-						class="recipe-img">
-					<p class="meta">510 kcal • 40g protein • 15g carbs • 22g fat •
-						salmon, lemon, garlic, asparagus</p>
-				</article>
-			</div>
-		</section>
-	</main>
+  <div class="samples-grid">
+    <article
+      class="glass-card example-recipe"
+      data-name="Chicken &amp; Veg Bowl"
+      data-calories="520"
+      data-protein="35"
+      data-carbs="40"
+      data-fat="12"
+      data-ingredients="chicken, broccoli, carrots, rice"
+      data-image="chicken_veg.jpg">
+      <h3>Chicken &amp; Veg Bowl</h3>
+      <img src="../imgs/chicken_veg.jpg" alt="Chicken and Veg Bowl" class="recipe-img">
+      <p class="meta">
+        520 kcal • 35g protein • 40g carbs • 12g fat • chicken, broccoli, carrots, rice
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
 
-	<!-- JS -->
-	<script src="../js/recipes.js"></script>
-	<script src="../js/navbar.js"></script>
+    <article
+      class="glass-card example-recipe"
+      data-name="Tuna Avocado Wrap"
+      data-calories="430"
+      data-protein="25"
+      data-carbs="35"
+      data-fat="18"
+      data-ingredients="tuna, avocado, tortilla, lettuce"
+      data-image="tuna_wrap.jpg">
+      <h3>Tuna Avocado Wrap</h3>
+      <img src="../imgs/tuna_wrap.jpg" alt="Tuna Avocado Wrap" class="recipe-img">
+      <p class="meta">
+        430 kcal • 25g protein • 35g carbs • 18g fat • tuna, avocado, tortilla, lettuce
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
+
+    <article
+      class="glass-card example-recipe"
+      data-name="Garlic Lemon Salmon"
+      data-calories="510"
+      data-protein="40"
+      data-carbs="15"
+      data-fat="22"
+      data-ingredients="salmon, lemon, garlic, asparagus"
+      data-image="lemon_salmon.jpg">
+      <h3>Garlic Lemon Salmon</h3>
+      <img src="../imgs/lemon_salmon.jpg" alt="Garlic Lemon Salmon" class="recipe-img">
+      <p class="meta">
+        510 kcal • 40g protein • 15g carbs • 22g fat • salmon, lemon, garlic, asparagus
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
+
+
+    <article
+      class="glass-card example-recipe"
+      data-name="Stir-Fry Noodles"
+      data-calories="550"
+      data-protein="18"
+      data-carbs="70"
+      data-fat="18"
+      data-ingredients="noodles, mixed vegetables, soy sauce, sesame oil"
+      data-image="noodles.jpeg">
+      <h3>Stir-Fry Noodles</h3>
+      <img src="../imgs/noodles.jpeg" alt="Stir-Fry Noodles" class="recipe-img">
+      <p class="meta">
+        550 kcal • 18g protein • 70g carbs • 18g fat • noodles, mixed vegetables, soy sauce, sesame oil
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
+
+    <article
+      class="glass-card example-recipe"
+      data-name="Crispy Fried Chicken"
+      data-calories="680"
+      data-protein="42"
+      data-carbs="45"
+      data-fat="32"
+      data-ingredients="chicken, flour, spices, oil, mashed potatoes"
+      data-image="fried_chicken.avif">
+      <h3>Crispy Fried Chicken</h3>
+      <img src="../imgs/fried_chicken.avif" alt="Crispy Fried Chicken" class="recipe-img">
+      <p class="meta">
+        680 kcal • 42g protein • 45g carbs • 32g fat • chicken, flour, spices, oil, mashed potatoes
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
+
+    <article
+      class="glass-card example-recipe"
+      data-name="Classic Bolognese Pasta"
+      data-calories="600"
+      data-protein="30"
+      data-carbs="65"
+      data-fat="20"
+      data-ingredients="pasta, ground beef, tomato sauce, onion, parmesan"
+      data-image="bolognese.jpg">
+      <h3>Classic Bolognese Pasta</h3>
+      <img src="../imgs/bolognese.jpg" alt="Classic Bolognese Pasta" class="recipe-img">
+      <p class="meta">
+        600 kcal • 30g protein • 65g carbs • 20g fat • pasta, ground beef, tomato sauce, onion, parmesan
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
+
+    <article
+      class="glass-card example-recipe"
+      data-name="Egg Breakfast Sandwich"
+      data-calories="420"
+      data-protein="22"
+      data-carbs="38"
+      data-fat="18"
+      data-ingredients="egg, cheese, bread, lettuce, tomato"
+      data-image="egg_sandw.webp">
+      <h3>Egg Breakfast Sandwich</h3>
+      <img src="../imgs/egg_sandw.webp" alt="Egg Breakfast Sandwich" class="recipe-img">
+      <p class="meta">
+        420 kcal • 22g protein • 38g carbs • 18g fat • egg, cheese, bread, lettuce, tomato
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
+
+    <article
+      class="glass-card example-recipe"
+      data-name="Fresh Fruit Bowl"
+      data-calories="250"
+      data-protein="4"
+      data-carbs="60"
+      data-fat="1"
+      data-ingredients="mixed berries, melon, grapes, kiwi"
+      data-image="fruits.jpg">
+      <h3>Fresh Fruit Bowl</h3>
+      <img src="../imgs/fruits.jpg" alt="Fresh Fruit Bowl" class="recipe-img">
+      <p class="meta">
+        250 kcal • 4g protein • 60g carbs • 1g fat • mixed berries, melon, grapes, kiwi
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
+
+    <article
+      class="glass-card example-recipe"
+      data-name="Grilled Steak Plate"
+      data-calories="650"
+      data-protein="45"
+      data-carbs="30"
+      data-fat="28"
+      data-ingredients="steak, roasted potatoes, green beans, herbs"
+      data-image="steak.jpg">
+      <h3>Grilled Steak Plate</h3>
+      <img src="../imgs/steak.jpg" alt="Grilled Steak Plate" class="recipe-img">
+      <p class="meta">
+        650 kcal • 45g protein • 30g carbs • 28g fat • steak, roasted potatoes, green beans, herbs
+      </p>
+      <button type="button" class="save-example-btn">Save to My Recipes</button>
+    </article>
+  </div>
+</section>
+
+  </main>
+
+  <!-- JS -->
+  <script src="../js/recipes.js"></script>
+  <script src="../js/navbar.js"></script>
 </body>
 </html>

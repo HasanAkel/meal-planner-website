@@ -349,6 +349,83 @@
   font-size: 2rem;
 }
 
+.meal-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  padding: 0.3rem 0.4rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.meal-entry .selectedImg {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.meal-entry-text .meal-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.remove-meal-btn {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: #fee2e2;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 0.3rem;
+}
+
+.remove-meal-btn:hover {
+  color: #fecaca;
+}
+
+/* List of meals under each day */
+.day-meal-list {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.day-meal-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.03);
+  color: #111827;
+}
+
+.day-meal-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.day-meal-remove {
+  border: none;
+  background: transparent;
+  color: #f97373;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 0.3rem;
+}
+
+.day-meal-remove:hover {
+  color: #ef4444;
+}
+
+
+
 
 /* Medium: 5 columns; center last two */
 @media (max-width: 1024px) {

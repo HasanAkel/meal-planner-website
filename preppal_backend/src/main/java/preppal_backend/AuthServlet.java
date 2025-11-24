@@ -37,18 +37,16 @@ public class AuthServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         
-        // Check the existing session (don't create a new one if none exists)
         HttpSession session = request.getSession(false);
         User user = (session != null) ? (User) session.getAttribute("user") : null;
         
         if (user != null) {
-            // User is logged in
             out.print("{\"status\":\"logged_in\", \"username\":\"" + user.getUsername() + "\"}");
         } else {
-            // Guest mode
             out.print("{\"status\":\"guest\"}");
         }
     }
+
 
     private void handleRegister(HttpServletRequest request, PrintWriter out) {
         String username = request.getParameter("username");
@@ -101,6 +99,11 @@ public class AuthServlet extends HttpServlet {
         if (session != null) {
             session.invalidate(); // Destroy session
         }
-        response.sendRedirect("index.html");
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        out.print("{\"status\":\"logged_out\"}");
     }
+
 }

@@ -18,7 +18,7 @@ addRecipeBtn.addEventListener("click", function () {
     recipeControlsSection.classList.add("hidden");
 });
 
-// ---- CREATE (POST) ----
+// ---- CREATE (POST) from form ----
 addRecipeForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -26,7 +26,7 @@ addRecipeForm.addEventListener("submit", function (event) {
     const calories = document.getElementById("recipe-calories").value;
     const protein = document.getElementById("recipe-protein").value;
     const carbs = document.getElementById("recipe-carbs").value;
-	const fat = document.getElementById("recipe-fat").value;
+    const fat = document.getElementById("recipe-fat").value;
     const ingredients = document.getElementById("recipe-ingredients").value;
 
     const imageInput = document.getElementById("recipe-image");
@@ -37,7 +37,7 @@ addRecipeForm.addEventListener("submit", function (event) {
     params.append("calories", calories);
     params.append("protein", protein);
     params.append("carbs", carbs);
-	params.append("fat", fat);
+    params.append("fat", fat);
     params.append("ingredients", ingredients);
     params.append("image", imagePath);
 
@@ -91,9 +91,9 @@ function loadSavedRecipes() {
                 const carbsText = (r.carbs != null && r.carbs !== 0)
                     ? `${r.carbs} g carbs • `
                     : "";
-					const fatText = (r.fat != null && r.fat !== 0)
-					    ? `${r.fat} g fat • `
-					    : "";
+                const fatText = (r.fat != null && r.fat !== 0)
+                    ? `${r.fat} g fat • `
+                    : "";
 
                 card.innerHTML = `
                     <h3>${r.name}</h3>
@@ -171,4 +171,56 @@ if (searchInput) {
     searchInput.addEventListener("input", applyRecipeSearchFilter);
 }
 
+// ---- save example recipes into Saved Recipes ----
+function initExampleRecipeSaveButtons() {
+    const exampleCards = document.querySelectorAll(".example-recipe");
+
+    exampleCards.forEach(card => {
+        const btn = card.querySelector(".save-example-btn");
+        if (!btn) return;
+
+        btn.addEventListener("click", () => {
+            const name        = card.dataset.name;
+            const calories    = card.dataset.calories;
+            const protein     = card.dataset.protein;
+            const carbs       = card.dataset.carbs;
+            const fat         = card.dataset.fat;
+            const ingredients = card.dataset.ingredients;
+            const image       = card.dataset.image;
+
+            const params = new URLSearchParams();
+            params.append("name", name);
+            params.append("calories", calories);
+            params.append("protein", protein);
+            params.append("carbs", carbs);
+            params.append("fat", fat);
+            params.append("ingredients", ingredients);
+            params.append("image", image);
+
+            fetch(`${RECIPES_URL}?${params.toString()}`, {
+                method: "POST"
+            })
+            .then(response => {
+                if (response.status === 401) {
+                    alert("Please log in to save recipes.");
+                    window.location.href = "registration.html";
+                    return;
+                }
+                if (!response.ok) {
+                    throw new Error("Failed to save example recipe");
+                }
+
+                // Remove this example card from the Example section
+                card.remove();
+
+                // Refresh saved recipes from DB
+                loadSavedRecipes();
+            })
+            .catch(err => console.error("Error saving example recipe:", err));
+        });
+    });
+}
+
+// initial loads
 loadSavedRecipes();
+initExampleRecipeSaveButtons();
