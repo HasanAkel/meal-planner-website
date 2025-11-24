@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
-  initializeTracker();
-});
+//DOMContentLoaded wrapper needed because script is at end of <body>
+// Run immediately
+initializeTracker();
 
 let currentPeriod = "today";
 let nutritionChart = null; // Global chart instance
@@ -35,7 +35,7 @@ function checkLoginStatus() {
     .then((response) => response.json())
     .then((data) => {
       if (data.status === "logged_in") {
-        // Update Welcome Message
+        // Update header if you want
         const header = document.querySelector(".tracker-header h1");
         if (header) header.textContent = `Your Progress Tracker`;
 
