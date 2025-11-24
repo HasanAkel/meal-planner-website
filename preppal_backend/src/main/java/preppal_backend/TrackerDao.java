@@ -214,19 +214,6 @@ public boolean savePlannedMealsAsConsumed(int userId, List<PlannedMeal> meals) t
 }
 
 
-    // Mark a planned meal as consumed
-    public boolean markMealAsConsumed(int userId, int recipeId) throws SQLException {
-        String sql = "INSERT INTO consumed_meals (user_id, recipe_id, consumed_date, consumed_time) VALUES (?, ?, CURDATE(), CURTIME())";
-
-        try (Connection conn = getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setInt(1, userId);
-            ps.setInt(2, recipeId);
-            return ps.executeUpdate() > 0;
-        }
-    }
-
     //find the recent meals for the user
     public List<Map<String, Object>> getRecentMeals(int userId) throws SQLException {
         List<Map<String, Object>> meals = new ArrayList<>();
