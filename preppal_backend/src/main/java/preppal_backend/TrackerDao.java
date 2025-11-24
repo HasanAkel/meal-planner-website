@@ -30,7 +30,7 @@ public class TrackerDao {
 // Get nutrition statistics for a time period
     public Map<String, Object> getNutritionStats(int userId, String period) throws SQLException {
         Map<String, Object> stats = new HashMap<>();
-
+        
         // Initialize defaults
         stats.put("calories", 0);
         stats.put("protein", 0);
@@ -39,53 +39,74 @@ public class TrackerDao {
 
         LocalDate endDate = LocalDate.now();
         LocalDate startDate = endDate;
+        boolean isAverageNeeded = false; 
 
         // Determine Date Range
         if ("today".equalsIgnoreCase(period)) {
             startDate = endDate;
         } else if ("this week".equalsIgnoreCase(period)) {
-            // last 7 days including today
-            startDate = endDate.minusDays(6);
+            startDate = endDate.minusDays(6); // Last 7 days
+            isAverageNeeded = true; // Show daily average for the week
         } else if ("this month".equalsIgnoreCase(period)) {
-            // first day of current month
             startDate = endDate.withDayOfMonth(1);
+            isAverageNeeded = true; // Show daily average for the month
         }
 
-        // Query for Totals in that range
-        String sumSql =
-            "SELECT SUM(r.calories) as total_cals, " +
-            "       SUM(r.protein)  as total_protein, " +
-            "       SUM(r.carbs)    as total_carbs, " +
-            "       SUM(r.fat)      as total_fat " +
-            "FROM consumed_meals cm " +
-            "JOIN recipes r ON cm.recipe_id = r.id " +
-            "WHERE cm.user_id = ? AND cm.consumed_date BETWEEN ? AND ?";
+        // Query for Totals
+        String sumSql = "SELECT SUM(r.calories) as total_cals, " +
+                        "       SUM(r.protein) as total_protein, " +
+                        "       SUM(r.carbs) as total_carbs, " +
+                        "       SUM(r.fat) as total_fat " +
+                        "FROM consumed_meals cm " +
+                        "JOIN recipes r ON cm.recipe_id = r.id " +
+                        "WHERE cm.user_id = ? AND cm.consumed_date BETWEEN ? AND ?";
 
         int totalCals = 0, totalProtein = 0, totalCarbs = 0, totalFat = 0;
 
-        try (Connection conn = getConnection();
+        try (Connection conn = getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sumSql)) {
-
             ps.setInt(1, userId);
             ps.setDate(2, Date.valueOf(startDate));
             ps.setDate(3, Date.valueOf(endDate));
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    totalCals    = rs.getInt("total_cals");
+                    totalCals = rs.getInt("total_cals");
                     totalProtein = rs.getInt("total_protein");
-                    totalCarbs   = rs.getInt("total_carbs");
-                    totalFat     = rs.getInt("total_fat");
+                    totalCarbs = rs.getInt("total_carbs");
+                    totalFat = rs.getInt("total_fat");
                 }
             }
         }
 
-        // Just return totals (no averages)
-        stats.put("calories", totalCals);
-        stats.put("protein",  totalProtein);
-        stats.put("carbs",    totalCarbs);
-        stats.put("fat",      totalFat);
+        // Calculate Averages if needed
+        if (isAverageNeeded) {
+            String countSql = "SELECT COUNT(DISTINCT consumed_date) as days_tracked " +
+                              "FROM consumed_meals " +
+                              "WHERE user_id = ? AND consumed_date BETWEEN ? AND ?";
+            int daysTracked = 0;
+            try (Connection conn = getConnection(); 
+                 PreparedStatement ps = conn.prepareStatement(countSql)) {
+                ps.setInt(1, userId);
+                ps.setDate(2, Date.valueOf(startDate));
+                ps.setDate(3, Date.valueOf(endDate));
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) daysTracked = rs.getInt("days_tracked");
+                }
+            }
 
+            if (daysTracked > 0) {
+                stats.put("calories", totalCals / daysTracked);
+                stats.put("protein", totalProtein / daysTracked);
+                stats.put("carbs", totalCarbs / daysTracked);
+                stats.put("fat", totalFat / daysTracked);
+            }
+        } else {
+            stats.put("calories", totalCals);
+            stats.put("protein", totalProtein);
+            stats.put("carbs", totalCarbs);
+            stats.put("fat", totalFat);
+        }
         return stats;
     }
 
