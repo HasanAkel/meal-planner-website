@@ -190,8 +190,8 @@ document.querySelector('#step-3-credentials .step-form').addEventListener('submi
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            alert("Registration Successful! Redirecting to login...");
-            // Redirect to login or home page
+            alert("Registration successful! Redirecting to your dashboard...");
+      
             window.location.href = 'index.html'; 
         } else {
             // Handle backend errors (e.g., Username taken)

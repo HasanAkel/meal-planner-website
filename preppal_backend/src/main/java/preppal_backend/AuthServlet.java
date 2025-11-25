@@ -50,17 +50,18 @@ public class AuthServlet extends HttpServlet {
 
     private void handleRegister(HttpServletRequest request, PrintWriter out) {
         String username = request.getParameter("username");
-        
+        String password = request.getParameter("password");
+
         // 1. Check if user exists
         if (userDao.isUsernameTaken(username)) {
             out.print("{\"status\":\"error\", \"message\":\"Username already taken\"}");
             return;
         }
 
-        // 2. Create User Object
+        // 2. Create User Object with all fields
         User user = new User(
             username,
-            request.getParameter("password"),
+            password,
             request.getParameter("email"),
             Double.parseDouble(request.getParameter("height")),
             Double.parseDouble(request.getParameter("weight")),
@@ -71,11 +72,38 @@ public class AuthServlet extends HttpServlet {
         // 3. Save to DB
         boolean success = userDao.registerUser(user);
         if (success) {
-            out.print("{\"status\":\"success\", \"message\":\"Registration complete!\"}");
+            // AUTO-LOGIN AFTER REGISTRATION
+
+            // Re-fetch user from DB with correct id + fields
+            User loggedInUser = userDao.checkLogin(username, password);
+
+            if (loggedInUser != null) {
+                // Create session and store user (same as login)
+                HttpSession session = request.getSession(true);
+                session.setAttribute("user", loggedInUser);
+
+                out.print(
+                    "{"
+                        + "\"status\":\"success\","
+                        + "\"message\":\"Registration complete!\","
+                        + "\"username\":\"" + loggedInUser.getUsername() + "\""
+                    + "}"
+                );
+            } else {
+                // Fallback: registered but couldn't auto-login (rare)
+                out.print(
+                    "{"
+                        + "\"status\":\"success\","
+                        + "\"message\":\"Registration complete! Please log in.\","
+                        + "\"username\":\"" + username + "\""
+                    + "}"
+                );
+            }
         } else {
             out.print("{\"status\":\"error\", \"message\":\"Database error during registration\"}");
         }
     }
+
 
     private void handleLogin(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
         User user = userDao.checkLogin(

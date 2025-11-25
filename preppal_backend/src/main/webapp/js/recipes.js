@@ -53,7 +53,7 @@ addRecipeForm.addEventListener("submit", function (event) {
         .catch(err => console.error("Error while saving recipe:", err));
 });
 
-// ---- READ + DISPLAY ----
+// ---- READ + DISPLAY SAVED RECIPES ----
 function loadSavedRecipes() {
     fetch(RECIPES_URL)
         .then(response => response.json())
@@ -67,6 +67,8 @@ function loadSavedRecipes() {
 
             if (!Array.isArray(data) || data.length === 0) {
                 section.classList.add("hidden");
+                // still need to sync example recipes (show all)
+                updateExampleVisibility([]);
                 return;
             }
 
@@ -123,9 +125,42 @@ function loadSavedRecipes() {
                 });
             });
 
+            // hide/show example recipes depending on what's saved
+            updateExampleVisibility(data);
+
             applyRecipeSearchFilter();
         })
         .catch(err => console.error("Error loading saved recipes:", err));
+}
+
+// ---- SYNC EXAMPLE RECIPES WITH SAVED ONES ----
+function updateExampleVisibility(savedRecipes) {
+    const exampleCards = document.querySelectorAll(".example-recipe");
+    if (!exampleCards.length) return;
+
+    const savedNames = new Set(
+        (savedRecipes || []).map(r =>
+            (r.name || "").trim().toLowerCase()
+        )
+    );
+
+    exampleCards.forEach(card => {
+        // prefer data-name, fallback to heading text
+        const exName =
+            (card.dataset.name ||
+             (card.querySelector("h3") ? card.querySelector("h3").textContent : "")
+            ).trim().toLowerCase();
+
+        if (!exName) return;
+
+        if (savedNames.has(exName)) {
+            // already saved → hide from example list
+            card.style.display = "none";
+        } else {
+            // not saved → show
+            card.style.display = "";
+        }
+    });
 }
 
 // ---- SEARCH (saved recipes only) ----
@@ -210,10 +245,8 @@ function initExampleRecipeSaveButtons() {
                     throw new Error("Failed to save example recipe");
                 }
 
-                // Remove this example card from the Example section
-                card.remove();
-
-                // Refresh saved recipes from DB
+                // Instead of removing permanently, just reload & let
+                // updateExampleVisibility() hide it.
                 loadSavedRecipes();
             })
             .catch(err => console.error("Error saving example recipe:", err));
