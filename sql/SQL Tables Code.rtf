@@ -1,0 +1,48 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 'CREATE TABLE `recipes` (\
+  `id` int NOT NULL AUTO_INCREMENT,\
+  `name` varchar(255) DEFAULT NULL,\
+  `calories` int DEFAULT NULL,\
+  `protein` int DEFAULT NULL,\
+  `carbs` int DEFAULT NULL,\
+  `fat` int DEFAULT ''0'',\
+  `ingredients` text,\
+  `image_path` varchar(255) DEFAULT NULL,\
+  `user_id` int DEFAULT NULL,\
+  PRIMARY KEY (`id`),\
+  KEY `fk_recipes_users_idx` (`user_id`),\
+  CONSTRAINT `fk_recipes_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE\
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci'\
+\
+'CREATE TABLE `users` (\
+  `id` int NOT NULL AUTO_INCREMENT,\
+  `username` varchar(50) NOT NULL,\
+  `password` varchar(255) NOT NULL,\
+  `email` varchar(100) NOT NULL,\
+  `height` double DEFAULT NULL,\
+  `weight` double DEFAULT NULL,\
+  `age` int DEFAULT NULL,\
+  `goal` varchar(20) DEFAULT NULL,\
+  PRIMARY KEY (`id`),\
+  UNIQUE KEY `username_UNIQUE` (`username`)\
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci'\
+\
+\
+'CREATE TABLE `consumed_meals` (\
+  `id` int NOT NULL AUTO_INCREMENT,\
+  `user_id` int NOT NULL,\
+  `recipe_id` int NOT NULL,\
+  `consumed_date` date NOT NULL,\
+  `consumed_time` time NOT NULL,\
+  PRIMARY KEY (`id`),\
+  KEY `fk_consumed_recipe` (`recipe_id`),\
+  KEY `idx_consumed_user_date` (`user_id`,`consumed_date`),\
+  CONSTRAINT `fk_consumed_recipe` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE,\
+  CONSTRAINT `fk_consumed_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE\
+) ENGINE=InnoDB AUTO_INCREMENT=237 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci'}
