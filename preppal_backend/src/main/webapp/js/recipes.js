@@ -31,6 +31,20 @@ addRecipeForm.addEventListener("submit", function (event) {
 
     const imageInput = document.getElementById("recipe-image");
     const imagePath = imageInput.files.length > 0 ? imageInput.files[0].name : "";
+	
+	//Front-end validation: ALL fields must be filled
+	if (
+	    !name ||
+	    !calories ||
+	    !protein ||
+	    !carbs ||
+	    !fat ||
+	    !ingredients ||
+	    !imagePath
+	) {
+	    alert("Please fill out all fields and choose an image before saving the recipe.");
+	    return;
+	}
 
     const params = new URLSearchParams();
     params.append("name", name);

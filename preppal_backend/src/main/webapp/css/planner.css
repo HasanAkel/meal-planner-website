@@ -559,3 +559,89 @@
   height: 18px;
   object-fit: contain;
 }
+
+
+
+@media (max-width: 900px) {
+  .plannerCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .planner-actions {
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .plannerBtns {
+    /* make them smaller and stop them from stretching */
+    width: 260px !important;
+    max-width: 80% !important;
+    padding: 0.7em 1.1em !important;
+    font-size: 0.9rem !important;
+    justify-content: center;
+  }
+
+  .week-summary-selected {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .selected-img {
+    height: 230px;
+  }
+
+  .summary-header-info > h2 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Phones / narrow windows */
+@media (max-width: 600px) {
+  .plannerCard {
+    padding: 1rem;
+    align-items: center;
+  }
+
+  .planner-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .plannerBtns {
+    width: 220px !important;  
+    max-width: 75% !important;
+    padding: 0.6em 1em !important;
+    font-size: 0.85rem !important;
+  }
+
+  .week-summary-selected {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .selected-img {
+    height: 190px;
+  }
+
+  .information-selected {
+    font-size: 0.95rem;
+    padding: 0 6px;
+  }
+
+  .information-selected > h2 {
+    font-size: 1.5rem;
+  }
+
+  .information-selected > p {
+    font-size: 0.9rem;
+  }
+
+  .summary-header-info > h2 {
+    font-size: 1.8rem;
+  }
+}
+
